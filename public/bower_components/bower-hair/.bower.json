@@ -1,0 +1,25 @@
+{
+  "name": "bower-hair",
+  "authors": [
+    "sangcao <sangcao1003@gmail.com>"
+  ],
+  "description": "Framgia standard demo Bower",
+  "main": "/",
+  "keywords": [
+    "fonticons"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/thanhsangcao/bower-hair.git",
+  "ignore": [
+    "README.md"
+  ],
+  "_release": "46a22d8d70",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "46a22d8d70850f3169697975a7cc2511450a035c"
+  },
+  "_source": "https://github.com/thanhsangcao/bower-hair.git",
+  "_target": "*",
+  "_originalSource": "bower-hair"
+}
