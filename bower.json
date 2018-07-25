@@ -1,0 +1,21 @@
+{
+  "name": "hair",
+  "description": "",
+  "main": "",
+  "authors": [
+    "sangcao <sangcao1003@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/thanhsangcao/hair",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bower-hair": "https://github.com/thanhsangcao/bower-hair.git"
+  }
+}
