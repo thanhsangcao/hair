@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', 'PagesController@home');
+
+Route::get('/admin', function () {
     return view('admin.index');
 });
-Route::get('login', function () {
+
+Route::get('/admin/login', function () {
     return view('admin.login');
 });
