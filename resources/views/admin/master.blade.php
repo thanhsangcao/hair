@@ -8,6 +8,8 @@
     {{ Html::style('bower_components/bower-hair/css/datepicker3.css') }}
     {{ Html::style('css/styles_admin.css') }}
     {{ Html::script('bower_components/bower-hair/js/lumino.glyphs.js') }}
+    
+
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -40,7 +42,7 @@
     @yield('main')
     {{ Html::script('bower_components/bower-hair/js/jquery-1.11.1.min.js') }}
     {{ Html::script('bower_components/bower-hair/js/bootstrap.min.js') }}
-    {{ Html::script('bower_components/bower-hair/js/js/chart.min.js') }}
+    {{ Html::script('bower_components/bower-hair/js/chart.min.js') }}
     {{ Html::script('bower_components/bower-hair/js/chart-data.js') }}
     {{ Html::script('bower_components/bower-hair/js/easypiechart.js') }}
     {{ Html::script('bower_components/bower-hair/js/easypiechart-data.js') }}

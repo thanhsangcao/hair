@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "bower-hair": "https://github.com/thanhsangcao/bower-hair.git"
+    "bower-hair": "https://github.com/thanhsangcao/bower-hair.git",
+    "chart.js": "^2.7.2"
   }
 }
