@@ -10,13 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'PagesController@home');
 
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
+    Route::get('/', 'AdminController@home');
+    Route::get('users', 'UserController@index');
+    Route::get('users/create', 'UserController@create');
+    Route::post('users/create', 'UserController@store');
+    Route::get('users/{id}/edit', 'UserController@edit');
+    Route::post('users/{id}/edit', 'UserController@update');
+    Route::delete('users/{id}', 'UserController@destroy');
 
-Route::get('/admin/login', function () {
-    return view('admin.login');
+    Route::get('salons', 'SalonController@index')->name('salons.index');
+    Route::get('salons/create', 'SalonController@create');
+    Route::post('salons/create', 'SalonController@store');
+    Route::get('salons/{id}/edit', 'SalonController@edit');
+    Route::post('salons/{id}/edit', 'SalonController@update');
+    Route::delete('salons/{id}', 'SalonController@destroy');
 });
