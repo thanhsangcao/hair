@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Salon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 
 class SalonController extends Controller
 {
@@ -15,7 +17,7 @@ class SalonController extends Controller
      */
     public function index()
     {
-        $salons = Salon::all();
+        $salons = DB::table('salons')->paginate(config('model.pagination'));
 
         return view('admin.salon.index', compact('salons'));
     }
@@ -38,14 +40,11 @@ class SalonController extends Controller
      */
     public function store(Request $request)
     {
-        $salon = new salon(array(
-            'name' => $request->get('name'),
-            'address' => $request->get('address')
-        ));
-
+        $salon = new Salon;
+        $salon = $salon->create($request->all());
         $salon->save();
 
-        return redirect('/admin/salons/create')->with('status','A new salon has been created!');
+        return redirect('/admin/salons')->with('status', trans('admin.Salon_create'));
     }
 
     /**
@@ -67,7 +66,14 @@ class SalonController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $salon = Salon::findOrFail($id);
+
+            return view('admin.salon.edit', compact('salon'));
+
+        } catch (ModelNotFoundException $e) {
+            abort(404);
+        }
     }
 
     /**
@@ -79,7 +85,16 @@ class SalonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $salon = Salon::findOrFail($id);
+            $salon->update($request->all());
+            $salon->save();
+
+            return redirect(action('Admin\SalonController@edit', $salon->id))->with('status', trans('admin.Salon_edit'));
+                
+        } catch (ModelNotFoundException $e) {
+            abort(404);
+        }
     }
 
     /**
@@ -90,6 +105,8 @@ class SalonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $salon = Salon::destroy($id);
+
+        return redirect('/admin/salons/')->with('status', trans('admin.Salon_delete'));
     }
 }
