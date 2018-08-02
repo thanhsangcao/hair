@@ -8,7 +8,8 @@
     {{ Html::style('bower_components/bower-hair/css/datepicker3.css') }}
     {{ Html::style('css/styles_admin.css') }}
     {{ Html::script('bower_components/bower-hair/js/lumino.glyphs.js') }}
-    
+    {{ Html::style('bower_components\bootstrap\dist\css\bootstrap.css') }}
+    {{ Html::style('css\style.css') }}
 
 </head>
 <body>
@@ -35,6 +36,8 @@
             <li class="active"><a href="{{ asset('admin') }}"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> {{ __('Homepage') }}</a></li>
             <li><a href="{{ asset('admin/users') }}"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> {{ __('User') }}</a></li>
             <li><a href="{{ asset('admin/salons') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('Salon') }}</a></li>
+            <li><a href="{{ asset('admin/services') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('Service') }}</a></li>
+
             <li role="presentation" class="divider"></li>
         </ul>
         
