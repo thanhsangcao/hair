@@ -1,0 +1,83 @@
+.content-step
+{
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 200px;
+    color: green;
+}
+.content-step1
+{
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 200px;
+}
+.content-step2
+{
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 200px;
+}
+h4
+{
+    color: #82704A;
+}
+label.search-name-input, label.search-phone-input
+{
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.price-box .name-input, .price-box .phone-input
+{
+    width: 250px;
+    padding: 2px;
+    margin: 2px;
+}
+.step-button{
+    margin-left: 15px;
+    margin-top: 5px;
+    width: 80px;
+    border-style: outset;
+    border-width: 2px;
+    padding: 3px;
+    color: #82704A;
+}
+.step-button:hover
+{
+    background-color: #6173f4 !important;
+    opacity: 0.8;
+    text-shadow: 1px 1px 3px #ccc;
+}
+.salons
+{
+    width: 800px;
+    border: 1px solid #000;
+    margin: 0 auto;
+}
+.row .fix_salon
+{
+    width: 400px;
+    float: left;
+}
+.time
+{
+    width: 400px;
+    border: 1px solid #000;
+    margin: 0 auto;
+}
+.fix_col
+{
+    width: 200px;
+    float: left;
+}
+.clear
+{
+    clear: both;
+}
