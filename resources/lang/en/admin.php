@@ -15,5 +15,9 @@ return [
     'Salon_create' => 'A new salon has been created!',
     'Salon_edit' => 'The salon has been updated!',
     'Salon_delete' => 'The salon has been deleted!',
+    'Service_create' => 'A new Service has been created!',
+    'Service_edit' => 'A new Service has been created!',
+    'Service_delete' => 'A new Service has been created!',
+
 
 ];
