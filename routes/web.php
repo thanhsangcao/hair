@@ -35,4 +35,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::post('services/{id}/edit', 'ServiceController@update');
     Route::delete('services/{id}', 'ServiceController@destroy');
 
+    Route::get('renderbookings', 'RenderBookingController@index')->name('renderbookings.index');
+    Route::get('renderbookings/create', 'RenderBookingController@create');
+    Route::post('renderbookings/create', 'RenderBookingController@store');
+    Route::get('renderbookings/{id}/edit', 'RenderBookingController@edit');
+    Route::post('renderbookings/{id}/edit', 'RenderBookingController@update');
+    Route::delete('renderbookings/{id}', 'RenderBookingController@destroy');
 });

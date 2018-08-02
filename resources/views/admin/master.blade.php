@@ -37,7 +37,7 @@
             <li><a href="{{ asset('admin/users') }}"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> {{ __('User') }}</a></li>
             <li><a href="{{ asset('admin/salons') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('Salon') }}</a></li>
             <li><a href="{{ asset('admin/services') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('Service') }}</a></li>
-
+            <li><a href="{{ asset('admin/renderbookings') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('RenderBooking') }}</a></li>
             <li role="presentation" class="divider"></li>
         </ul>
         

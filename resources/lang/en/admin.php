@@ -18,6 +18,7 @@ return [
     'Service_create' => 'A new Service has been created!',
     'Service_edit' => 'A new Service has been created!',
     'Service_delete' => 'A new Service has been created!',
-
-
+    'render_create' => 'A new RenderBooking has been created!',
+    'render_edit' => 'The Render has been updated!',
+    'render_delete' => 'The Render has been delete!',
 ];
