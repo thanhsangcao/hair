@@ -18,7 +18,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::get('users/create', 'UserController@create');
     Route::post('users/create', 'UserController@store');
     Route::get('users/{id}/edit', 'UserController@edit');
-    Route::post('users/{id}/edit', 'UserController@update');
+    Route::post('users/{id}/edit', 'UserController@update')->name('users.edit');
     Route::delete('users/{id}', 'UserController@destroy');
 
     Route::get('salons', 'SalonController@index')->name('salons.index');

@@ -45,7 +45,7 @@
     @yield('main')
     {{ Html::script('bower_components/bower-hair/js/jquery-1.11.1.min.js') }}
     {{ Html::script('bower_components/bower-hair/js/bootstrap.min.js') }}
-    {{ Html::script('bower_components/bower-hair/js/js/chart.min.js') }}
+    {{ Html::script('bower_components/bower-hair/js/chart.min.js') }}
     {{ Html::script('bower_components/bower-hair/js/chart-data.js') }}
     {{ Html::script('bower_components/bower-hair/js/easypiechart.js') }}
     {{ Html::script('bower_components/bower-hair/js/easypiechart-data.js') }}
