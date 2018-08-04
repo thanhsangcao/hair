@@ -11,34 +11,24 @@
                                 {{ trans('booking.salon') }}
                         </h4>
                     </label>
-            <div class="salons">
-                <div class="row">
-                    <div class="salon m_salon ">
-                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 fix_salon btn-a-salon">
-                            <div id="50" onclick="choose_salon($(this))" class="view_salon">
-                                <p class="text"> </p>
-                                <p class="address_salon"> </p>
-                                <p class="hidden hotline"> </p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 fix_salon btn-a-salon">
-                            <div id="48" onclick="choose_salon($(this))" class="view_salon">
-                                <p class="text"> </p>
-                                <p class="address_salon"> </p>
-                                <p class="hidden hotline"> </p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-group" >
+                    {!! Form::label('', __('Salon')) !!}
+                    <select class="form-control" name="salon">
+                        @foreach($salon as $sl)
+                            <option value="{{ $sl->id }}"> {{ $sl->name }} </option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="clear"> </div>
-            </div>
-                {{ Form::Open(['method' => 'POST', 'url' => 'home']) }}
-                    {{ Form:: submit(trans('booking.prev'), ['class' => 'btn-primary step-button prev-step', 'id' => 'prevStep_mobile']) }}
-                        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
-                {{ Form::close() }}
-                {{ Form::Open(['method' => 'POST', 'url' => 'booking2'])}}
-                    {{ Form:: submit(trans('booking.next'), ['class' => 'btn-primary step-button second-step', 'id' => 'nextStep_mobile']) }}
-                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                {{ Form::Open(['method' => 'POST', 'enctype' => 'multipart/form-data']) }}
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                        <div class="form-group">
+                            <a href="{{ asset('/home') }}" class="btn btn-danger">{{ __('Prev') }}</a> 
+                            {!! Form::submit(trans('booking.next'), ['type' => 'submit', 'class' => 'btn btn-primary', 'name' => 'submit']) !!}
+                        </div>
                 {{ Form::close() }}
                 </div>
             </div>

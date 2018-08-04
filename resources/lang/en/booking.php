@@ -7,5 +7,6 @@ return [
     'prev' => 'Prev',
     'next' => 'Next',
     'salon' => 'Choose Salon',
-    'time' => 'Choose Time',
+    'stylist' => 'Choose StyList',
+    'book' => 'Booking',
 ];

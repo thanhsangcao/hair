@@ -3,33 +3,46 @@
 @section('content')
     <div class="container">
         <div class="content-step2">
-            <div id="choice_address">
-                <div class="price-box infor_box_customer to-animate department-group-form">
-                    <label class="text-success form-name">
-                        <h4>
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                {{ trans('booking.time') }}
-                        </h4>
-                    </label>
-                <div class="time">
-                    <div id="160" class="btn-hour col-lg-3 col-sm-3 col-md-3 col-xs-3 fix_col">
-                        <div id="160" onclick="choose_time($(this))" class="btn-hour fill time_table border-red btn-hour-listing-current">
-                            <p class="text hour"> </p>
-                            <p class="text status"> </p>
+            <div class="col-md-12 col-sm-12 col-xs-12 choice_address" id="choice_list_time">
+                <div class="price-box to-animate">
+                    <div class="row">
+                        <div class="wrap-stylist-choice col-md-5 col-sm-12 row1">
+                            <label class="text-success form-name">
+                                <h4>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        {{ trans('booking.stylist') }}
+                                </h4>
+                            </label>
+                            <div class="form-group">
+                                <select class="form-control input-lg">
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div id="160" class="btn-hour col-lg-3 col-sm-3 col-md-3 col-xs-3 fix_col">
-                        <div id="160" onclick="choose_time($(this))" class="btn-hour fill time_table border-red btn-hour-listing-current">
-                            <p class="text hour"> </p>
-                            <p class="text status"> </p>
+                        <div class="wrap-booking-time col-md-7 col-sm-12 col-xs-12 row2">
+                            <label class="text-success form-name">
+                                <h4>
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                        {{ __('Choose Time') }}
+                                </h4>
+                            </label>
+                            <div class="form-group">
+                                <select class="form-control input-lg">
+                                </select>
+                            </div>
+                        {{ Form::Open(['method' => 'POST', 'enctype' => 'multipart/form-data']) }}
+                            @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+                            <div class="form-group">
+                            <a href="{{ asset('/booking') }}" class="btn btn-danger">{{ __('Prev') }}</a>
+                            {!! Form::submit(trans('booking.book'), ['type' => 'submit', 'class' => 'btn btn-primary', 'name' => 'submit']) !!}
+                            </div>
+                        {{ Form::close() }}
                         </div>
+                        <div class="clear"></div>
                     </div>
-                    <div class="clear"> </div>
-                </div>
-                {{ Form::Open(['method' => 'POST', 'url' => 'booking1']) }}
-                    {{ Form:: submit(trans('booking.prev'), ['class' => 'btn-primary step-button prev-step', 'id' => 'prevStep_mobile']) }}
-                        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
-                {{ Form::close() }}
                 </div>
             </div>
         </div>

@@ -9,11 +9,12 @@ class Salon extends Model
     protected $guarded = ['id'];
     protected $fillable = ['name', 'address'];
 
-    public function RenderBooking()
+    public function renderBooking()
     {
         return $this->hasMany('App\RenderBooking', 'salon_id', 'id');
-
-     public function users()
+    }
+    
+    public function users()
     {
         return $this->hasMany('App\User');
     }
