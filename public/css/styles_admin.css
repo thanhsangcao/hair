@@ -860,12 +860,16 @@ h1.page-header {
 	margin-top: 20px;
 }
 
-.width-salon{
+.width-salon {
 	width: 40%;
 }
 
-.width-user{
-	width: 20%;
+#options {
+	width: 15%;
+}
+
+#options-service {
+	width: 30%;
 }
 /*Icons*/
 

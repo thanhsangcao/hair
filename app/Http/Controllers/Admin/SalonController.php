@@ -15,9 +15,13 @@ class SalonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $salons = DB::table('salons')->paginate(config('model.pagination'));
+
+        if ($request->ajax()) {
+            return view('admin.salon.load', ['salons' => $salons])->render();  
+        }
 
         return view('admin.salon.index', compact('salons'));
     }

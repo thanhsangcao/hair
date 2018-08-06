@@ -16,9 +16,13 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $services = DB::table('services')->paginate(config('model.pagination'));
+
+        if ($request->ajax()) {
+            return view('admin.service.load', ['services' => $services])->render();  
+        }
 
         return view('admin.service.index', compact('services'));
 

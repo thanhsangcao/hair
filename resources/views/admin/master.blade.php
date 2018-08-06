@@ -10,7 +10,8 @@
     {{ Html::script('bower_components/bower-hair/js/lumino.glyphs.js') }}
     {{ Html::style('bower_components\bootstrap\dist\css\bootstrap.css') }}
     {{ Html::style('css\style.css') }}
-
+    {{ Html::script('bower_components/bower-hair/js/jquery-1.11.1.min.js') }}
+    {{ Html::script('js/pagination.js') }}
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -47,7 +48,7 @@
         
     </div><!--/.sidebar-->
     @yield('main')
-    {{ Html::script('bower_components/bower-hair/js/jquery-1.11.1.min.js') }}
+    
     {{ Html::script('bower_components/bower-hair/js/bootstrap.min.js') }}
     {{ Html::script('bower_components/bower-hair/js/chart.min.js') }}
     {{ Html::script('bower_components/bower-hair/js/chart-data.js') }}
