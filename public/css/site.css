@@ -55,27 +55,22 @@ label.search-name-input, label.search-phone-input
     opacity: 0.8;
     text-shadow: 1px 1px 3px #ccc;
 }
-.salons
+.row
 {
     width: 800px;
     border: 1px solid #000;
     margin: 0 auto;
 }
-.row .fix_salon
+.row1
 {
     width: 400px;
     float: left;
 }
-.time
+.row2
 {
+    height: 200px;
     width: 400px;
-    border: 1px solid #000;
-    margin: 0 auto;
-}
-.fix_col
-{
-    width: 200px;
-    float: left;
+    float: right;
 }
 .clear
 {
