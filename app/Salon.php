@@ -13,7 +13,7 @@ class Salon extends Model
     {
         return $this->hasMany('App\RenderBooking', 'salon_id', 'id');
     }
-    
+
     public function users()
     {
         return $this->hasMany('App\User');

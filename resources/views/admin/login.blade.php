@@ -7,7 +7,7 @@
 
     {{ Html::style('bower_components/bower-hair/css/bootstrap.min.css') }}
     {{ Html::style('bower_components/bower-hair/css/datepicker3.css') }}
-    {{ Html::style('bower_components/bower-hair/css/styles.css') }}
+    {{ Html::style('css/styles_admin.css') }}
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -23,21 +23,25 @@
                 <div class="panel-heading">{{ __('Login') }}</div>
                 <div class="panel-body">
                     <!-- <form role="form" method="post"> -->
-                    {!! Form::open(['method' => 'post']) !!}
+                    @foreach ($errors->all() as $error)
+                        <p class="alert alert-danger">{{ $error }}</p>
+                    @endforeach
 
+                    {!! Form::open(['method' => 'post']) !!}
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="" value="{{old('email')}}">
+                                {!! Form::email('email', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Email' ]) !!}
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                {!! Form::password('password', ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Password' ]) !!}
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input name="remember" type="checkbox" value="Remember Me">{{ __('Remember Me') }}
+                                    {!! Form::checkbox('remember', 'remember') !!}
+                                    {{ __('Remember Me') }}
                                 </label>
                             </div>
-                            <button type="submit" name="submit" class="btn btn-primary">{{ __('Login') }}</button>
+                            {!! Form::button('Login', ['type' => 'submit', 'class' => 'btn btn-primary', 'name' => 'submit']) !!}
                         </fieldset>
                         {!! Form::token() !!}
                     {!! Form::close() !!}

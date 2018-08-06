@@ -11,8 +11,14 @@
 |
 */
 Route::get('/', 'PagesController@home');
+Route::group(['prefix' => 'admin', 'namespace' => 'Auth'], function() {
+    Route::get('login', 'LoginController@showLoginForm');
+    Route::post('login', 'LoginController@login');
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
+    Route::get('logout', 'LoginController@logout');
+});
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function() {
     Route::get('/', 'AdminController@home');
     Route::get('users', 'UserController@index');
     Route::get('users/create', 'UserController@create');

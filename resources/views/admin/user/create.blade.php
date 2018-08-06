@@ -43,7 +43,7 @@
 
                                     <div class="form-group" >
                                         {!! Form::label('', __('Salon')) !!}
-                                        {!! Form::select('salon_id', $select, null,['class' => 'form-control']) !!}
+                                        {!! Form::select('salon_id', $selectSalon, null,['class' => 'form-control']) !!}
                                     </div>
 
                                     <div class="form-group" >
@@ -67,7 +67,7 @@
 
                                     <div class="form-group" >
                                         {!! Form::label('', __('Permission')) !!}
-                                        {!! Form::text('permission', '', ['class' => 'form-control', 'required' => 'required']) !!}
+                                        {!! Form::select('permission', $selectRole, null, ['class' => 'form-control']) !!}
                                     </div>
                                     
                                 </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Salon;
 use App\Http\Requests\UserFormRequest;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -30,12 +31,18 @@ class UserController extends Controller
     public function create()
     {
         $salons = Salon::all();
-        $select = [];
+        $selectSalon = [];
         foreach($salons as $salon) {
-            $select[ $salon->id ] = $salon->name;
+            $selectSalon[ $salon->id ] = $salon->name;
         }
 
-        return view('admin.user.create', compact('select'));
+        $roles = Role::all();
+        $selectRole = [];
+        foreach ($roles as $role) {
+            $selectRole[ $role->id ] = $role->name;
+        }
+
+        return view('admin.user.create', compact('selectSalon', 'selectRole'));
     }
 
     /**
@@ -47,6 +54,7 @@ class UserController extends Controller
     public function store(UserFormRequest $request)
     {
         $user = User::create($request->all());
+        $user->syncRoles($request->get('permission'));
 
         return redirect('/admin/users')->with('status', trans('admin.User_create'));
     }
@@ -73,13 +81,20 @@ class UserController extends Controller
         try {
             $user = User::findOrFail($id);
             $salons = Salon::all();
-            $select = [];
+            $selectSalon = [];
             foreach($salons as $salon) {
-                $select[ $salon->id ] = $salon->name;
+                $selectSalon[ $salon->id ] = $salon->name;
             }
             $selectedSalon = $user->salon->id;
 
-            return view('admin.user.edit', compact('user', 'select', 'selectedSalon'));
+            $roles = Role::all();
+            $selectRole = [];
+            foreach ($roles as $role) {
+                $selectRole[ $role->id ] = $role->name;
+            }
+            $selectedRole = $user->roles()->pluck('id')->toArray();
+
+            return view('admin.user.edit', compact('user', 'selectSalon', 'selectedSalon', 'selectRole', 'selectedRole'));
 
         } catch (ModelNotFoundException $e) {
             abort(404);
@@ -99,6 +114,8 @@ class UserController extends Controller
             $user = User::findOrFail($id);
             $user->update($request->all());
             $user->save();
+
+            $user->syncRoles($request->get('permission'));
 
             return redirect(route('users.edit', $user->id))->with('status', trans('admin.User_edit'));
                 
