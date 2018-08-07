@@ -54,3 +54,11 @@ Route::get('booking', 'Site\SiteController@creates');
 Route::post('booking', 'Site\SiteController@stores');
 Route::get('bookings', 'Site\SiteController@getThem');
 Route::post('bookings', 'Site\SiteController@postThem');
+
+Route::get('stylists/', 'TimesheetController@index');
+Route::get('stylists/create', 'TimesheetController@create');
+Route::post('stylists/create', 'TimesheetController@store');
+Route::get('stylists/{id}/edit', 'TimesheetController@edit');
+Route::post('stylists/{id}/edit', 'TimesheetController@update');
+
+
