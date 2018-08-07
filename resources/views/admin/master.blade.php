@@ -42,6 +42,11 @@
                     <li><a href="{{ asset('admin/renderbookings') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('RenderBooking') }}</a></li>
                 @endrole
             @endif
+            @if (Auth::check())
+                @role('stylist')
+                <li><a href="{{ asset('stylists/') }}"> {{ __('Profile') }}</a></li>
+                @endrole
+            @endif
             <li role="presentation" class="divider"></li>
         </ul>
         
@@ -55,6 +60,9 @@
     {{ Html::script('bower_components/bower-hair/js/easypiechart-data.js') }}
     {{ Html::script('bower_components/bower-hair/js/bootstrap-datepicker.js') }}
     {{ Html::script('bower_components/bower-hair/js/myscript.js') }}
+    {{ Html::script('bower_components/jquery/dist/jquery.min.js') }}
+    {{ Html::script('bower_components\bootstrap\dist\js\bootstrap.js') }}
+
     <script>
         $('#calendar').datepicker({
         });

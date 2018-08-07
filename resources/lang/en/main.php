@@ -18,6 +18,9 @@ return [
     'fri' => 'Friday',
     'sat' => 'Saturday',
     'sun' => 'Sunday',
-
+    'edit_timesheet' => 'Edit your timesheet',
+    'add_timesheet' => 'Add your timesheet',
+    'addtimesheetsuccessful' => 'You have added your timesheet',
+    'timesheet_edited' => 'Your timesheet has been updated',
 
 ];
