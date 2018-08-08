@@ -20,44 +20,7 @@
                             </div>
                         @endif
                         <div class="bootstrap-table">
-                            <div class="table-responsive">
-                                <a href="{{ asset('admin/users/create') }}" class="btn btn-primary">{{ __('Add User') }}</a>
-                                <table class="table table-bordered" id="salon">             
-                                    <thead>
-                                        <tr class="bg-primary">
-                                            <th>{{ __('ID') }}</th>
-                                            <th>{{ __('Name') }}</th>
-                                            <th>{{ __('Email') }}</th>
-                                            <th class="width-user">{{ __('Address') }}</th>
-                                            <th>{{ __('Phone Number') }}</th>
-                                            <th>{{ __('Permission') }}</th>
-                                            <th>{{ __('Salon') }}</th>
-                                            <th>{{ __('Options') }}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($users as $user)
-                                        <tr>
-                                            <td>{{ $user->id }}</td>
-                                            <td><a href="{{ asset('admin/users/' . $user->id . '/edit') }}">{{ $user->name }}</a></td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->address }}</td>
-                                            <td>{{ $user->phone_number }}</td>
-                                            <td>{{ $user->permission }}</td>
-                                            <th>{{ $user->salon->name }}</th>
-                                            <td>
-                                                <a href="{{ asset('admin/users/' . $user->id . '/edit') }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Edit') }}</a>
-                                                {{ Form::open(array('url' => 'admin/users/' .  $user->id, 'class' => 'pull-right')) }}
-                                                    {{ Form::hidden('_method', 'DELETE') }}
-                                                    {{ Form::submit('Delete', array('class' => 'btn btn-danger','onClick' => "return confirm('Bạn có chắc chắn muốn xóa')")) }}
-                                                {{ Form::close() }}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                                {{ $users->links() }}                             
-                            </div>
+                            @include('admin.user.load')
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -65,5 +28,4 @@
             </div>
         </div><!--/.row-->
     </div>  <!--/.main-->
-    {{ Html::script('js/pagination.js') }}
 @stop

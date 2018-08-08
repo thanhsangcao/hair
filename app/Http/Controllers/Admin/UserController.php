@@ -16,9 +16,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $users = User::paginate(config('model.pagination'));
+
+        if ($request->ajax()) {
+            return view('admin.user.load', ['users' => $users])->render();  
+        }
 
         return view('admin.user.index', compact('users'));
     }

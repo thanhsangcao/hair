@@ -25,4 +25,5 @@ return [
     'render_edit' => 'The Render has been updated!',
     'render_delete' => 'The Render has been delete!',
     'User_unique' => 'Tên email trùng',
+    'Confirm' => 'Are you sure?'
 ];
