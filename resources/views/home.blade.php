@@ -44,21 +44,41 @@
         </div>
     </div>
 </div>
-<div>
-    <div class="col-md-12 text-center" >
-        <button type="button" class="btn btn-lg btn-success" >{!! trans('main.Booking') !!}</button>          
-        
-    </div>
-</div>
-<div class="col-md-12 col-xs-12 col-lg-12"> 
-    <div class="btn-group  btn-group-justified" role="group" aria-label="...">
-        <div class="btn-group " role="group">
-            <button type="button" class="btn btn-primary">{!! trans('main.Salons') !!}</button>
-        </div>
-        <div class="btn-group" role="group">
-            <button type="button" class="btn btn-primary">{!! trans('main.Stylists') !!}</button>
+    <div>
+        <div class="col-md-12 text-center" >
+            <a href="{{ asset('/home')}}" class="btn btn-success">{!! trans('main.Booking') !!}</a>
         </div>
     </div>
+    <div>
+        <div class="col-md-12 "> 
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#salon_list">
+            {{ __('Our salons')}}
+            </button>
+            <div id="salon_list" class="collapse">
+                <div class="col-md-6 col-xs-6 col-lg-6 table-headline">{!! __('Address') !!}</div>
+                <div class="col-md-6 col-xs-6 col-lg-6 table-headline">{!! __('Name') !!}</div>
+                @foreach ($salons as $salon)
+                    <div class="col-md-6 col-xs-6 col-lg-6 table-border">{!! $salon->address !!}</div>
+                    <div class="col-md-6 col-xs-6 col-lg-6 table-border">{{ $salon->name }}</div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="col-md-12 "> 
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#stylist_list">
+            {{ __('Our stylists')}}
+            </button>
+            <div id="stylist_list" class="collapse">
+                @foreach ($users as $user)
+                    @if ($user->permission == '2')
+                    <div class="col-md-6 col-xs-6 col-lg-6 table-border">{!! $user->name !!}</div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+    </div>
+
 </div>
 @endsection
 

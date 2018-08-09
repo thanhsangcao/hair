@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Model;
+
 
 class User extends Authenticatable
 {
@@ -31,6 +33,16 @@ class User extends Authenticatable
     public function salon()
     {
         return $this->belongsTo('App\Salon', 'salon_id', 'id');
+    }
+
+    public function timesheetStylist()
+    {
+        return $this->hasOne('App\TimeSheetStylist', 'stylist_id', 'id');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany('App\Booking', 'stylist_id', 'id');
     }
 
     public function setPasswordAttribute($password)

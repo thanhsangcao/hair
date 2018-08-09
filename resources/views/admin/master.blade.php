@@ -41,11 +41,13 @@
                     <li><a href="{{ asset('admin/salons') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('Salon') }}</a></li>
                     <li><a href="{{ asset('admin/services') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('Service') }}</a></li>
                     <li><a href="{{ asset('admin/renderbookings') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('RenderBooking') }}</a></li>
+                    <li><a href="{{ asset('admin/manage_stylists') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('Stylists') }}</a></li>
+                    <li><a href="{{ asset('admin/bookings') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('Bookings') }}</a></li>
                 @endrole
             @endif
             @if (Auth::check())
                 @role('stylist')
-                <li><a href="{{ asset('stylists/') }}"> {{ __('Profile') }}</a></li>
+                <li><a href="{{ asset('admin/stylists') }}"> {{ __('Profile') }}</a></li>
                 @endrole
             @endif
             <li role="presentation" class="divider"></li>

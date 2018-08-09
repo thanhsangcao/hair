@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\TimeSheetStylist;
@@ -31,6 +31,13 @@ class TimesheetController extends Controller
      */
     public function create()
     {
+        $timesheets = TimeSheetStylist::all();
+        foreach ($timesheets as $timesheet) {
+            if(Auth::user()->id == $timesheet->stylist_id){
+                return redirect('admin/stylists')->with('status', trans('main.addtimesheetsuccessful'));
+            }        
+        }
+
         return view('stylists.add_timesheet');
     }
 
@@ -57,7 +64,7 @@ class TimesheetController extends Controller
 
         $timesheet->save();
 
-        return redirect('/stylists')->with('status', trans('main.addtimesheetsuccessful'));
+        return redirect('admin/stylists')->with('status', trans('main.addtimesheetsuccessful'));
 
     }
 
@@ -105,7 +112,7 @@ class TimesheetController extends Controller
             $timesheet->update($request->all());
             $timesheet->save();
 
-            return redirect(action('TimesheetController@edit', $timesheet->id))->with('status', trans('main.timesheet_edited'));
+            return redirect(action('Admin\TimesheetController@edit', $timesheet->id))->with('status', trans('main.timesheet_edited'));
                 
         } catch (ModelNotFoundException $e) {
             abort(404);

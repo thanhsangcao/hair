@@ -14,8 +14,13 @@ class Salon extends Model
         return $this->hasMany('App\RenderBooking', 'salon_id', 'id');
     }
 
+    public function bookings()
+    {
+        return $this->hasMany('App\Booking', 'salon_id', 'id');
+    }
+    
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->hasMany('App\User', 'salon_id', 'id');
     }
 }

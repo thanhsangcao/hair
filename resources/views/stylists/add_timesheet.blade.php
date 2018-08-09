@@ -1,7 +1,7 @@
-@extends('master')
+@extends('admin.master')
 @section('title','Edit Timesheet')
-@section('content')
-<div class="container">
+@section('main')
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <h2>{{ __('Time Sheet')}}</h2>
     {!! Form::open(['method' => 'post', 'enctype' => 'multipart/form-data']) !!}
         @if (session('status'))
@@ -14,31 +14,32 @@
             <div class="col-xs-12">
                 <div class="form-group" >
                     {!! Form::label('', __('Monday')) !!}
-                    {!! Form::text('mon', '', ['class' => 'form-control', 'required' => 'required']) !!}
+                    {!! Form::select('mon', ['yes' => 'yes', 'no' => 'no'], null,['class' => 'form-control']) !!}
+
                 </div>
                 <div class="form-group" >
                     {!! Form::label('', __('Tuesday')) !!}
-                    {!! Form::text('tues', '', ['class' => 'form-control', 'required' => 'required']) !!}
+                    {!! Form::select('tues', ['yes' => 'yes', 'no' => 'no'], null,['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group" >
                     {!! Form::label('', __('Wednesday')) !!}
-                    {!! Form::text('wed', '', ['class' => 'form-control', 'required' => 'required']) !!}
+                    {!! Form::select('wed', ['yes' => 'yes', 'no' => 'no'], null,['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group" >
                     {!! Form::label('', __('Thursday')) !!}
-                    {!! Form::text('thur', '', ['class' => 'form-control', 'required' => 'required']) !!}
+                    {!! Form::select('thur', ['yes' => 'yes', 'no' => 'no'], null,['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group" >
                     {!! Form::label('', __('Friday')) !!}
-                    {!! Form::text('fri', '', ['class' => 'form-control', 'required' => 'required']) !!}
+                    {!! Form::select('fri', ['yes' => 'yes', 'no' => 'no'], null,['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group" >
                     {!! Form::label('', __('Saturday')) !!}
-                    {!! Form::text('sat', '', ['class' => 'form-control', 'required' => 'required']) !!}
+                    {!! Form::select('sat', ['yes' => 'yes', 'no' => 'no'], null,['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group" >
                     {!! Form::label('', __('Sunday')) !!}
-                    {!! Form::text('sun', '', ['class' => 'form-control', 'required' => 'required']) !!}
+                    {!! Form::select('sun', ['yes' => 'yes', 'no' => 'no'], null,['class' => 'form-control']) !!}
                 </div>
 
                                     

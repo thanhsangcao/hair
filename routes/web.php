@@ -47,6 +47,22 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
     Route::get('renderbookings/{id}/edit', 'RenderBookingController@edit');
     Route::post('renderbookings/{id}/edit', 'RenderBookingController@update');
     Route::delete('renderbookings/{id}', 'RenderBookingController@destroy');
+
+    Route::get('stylists', 'TimesheetController@index');
+    Route::get('stylists/create', 'TimesheetController@create');
+    Route::post('stylists/create', 'TimesheetController@store');
+    Route::get('stylists/{id}/edit', 'TimesheetController@edit');
+    Route::post('stylists/{id}/edit', 'TimesheetController@update');
+
+    Route::get('manage_stylists', 'ManageTimesheetController@index');
+    Route::get('manage_stylists/{id}/edit', 'ManageTimesheetController@edit');
+    Route::post('manage_stylists/{id}/edit', 'ManageTimesheetController@update');
+
+    Route::get('bookings', 'BookingController@index')->name('bookings.index');
+    Route::get('bookings/{id}/edit', 'BookingController@edit');
+    Route::post('bookings/{id}/edit', 'BookingController@update');
+    Route::delete('bookings/{id}', 'BookingController@destroy');
+
 });
 Route::get('home', 'Site\SiteController@create');
 Route::post('home', 'Site\SiteController@store');
@@ -54,11 +70,6 @@ Route::get('booking', 'Site\SiteController@creates');
 Route::post('booking', 'Site\SiteController@stores');
 Route::get('bookings', 'Site\SiteController@getThem');
 Route::post('bookings', 'Site\SiteController@postThem');
-
-Route::get('stylists/', 'TimesheetController@index');
-Route::get('stylists/create', 'TimesheetController@create');
-Route::post('stylists/create', 'TimesheetController@store');
-Route::get('stylists/{id}/edit', 'TimesheetController@edit');
-Route::post('stylists/{id}/edit', 'TimesheetController@update');
-
+Route::get('bookingss', 'Site\SiteController@getThems');
+Route::post('bookingss', 'Site\SiteController@postThems');
 
