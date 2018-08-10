@@ -17,15 +17,15 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $timesheetstylist = TimeSheetStylist::all();
-        $user = User::where('permission', 2)->get();
-        $salon = Salon::where('id', '<>', 1)->get();
-        $booking = Booking::all();
         $booking = Booking::paginate(config('model.pagination'));
         
-         return view('admin.booking.index', compact('user', 'salon', 'booking', 'timesheetstylist'));
+        if ($request->ajax()) {
+            return view('admin.booking.load', ['booking' => $booking])->render();  
+        }
+
+        return view('admin.booking.index', compact('booking'));
     }
      /**
      * Show the form for creating a new resource.

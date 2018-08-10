@@ -18,14 +18,15 @@ class ManageTimesheetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $time_sheets = DB::table('time_sheet_stylists')->paginate(config('model.pagination'));
-        // $user = DB::table('users')->paginate(config('model.pagination'));
-        $time_sheets=TimeSheetStylist::all();
         $time_sheets=TimeSheetStylist::paginate(config('model.pagination'));
-        $user=User::all();
-        return view('admin.stylists.index',compact('time_sheets','user'));
+
+        if ($request->ajax()) {
+            return view('admin.stylists.load', ['time_sheets' => $time_sheets])->render();  
+        }
+
+        return view('admin.stylists.index',compact('time_sheets'));
     }
 
     /**
