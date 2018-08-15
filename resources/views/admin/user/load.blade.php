@@ -38,9 +38,3 @@
     {{ $users->links() }}     
 
 </div>
-
-<script type="text/javascript">
-    $('.del').on('click', function () {
-        return confirm("{{ __('Are u sure?') }}");
-    });
-</script>

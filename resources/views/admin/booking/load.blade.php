@@ -26,7 +26,7 @@
                     <a href="{{ asset('admin/bookings/' . $bk->id . '/edit') }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Edit') }}</a>
                     {{ Form::open(array( 'url' => 'admin/bookings/' . $bk->id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
-                        {{ Form::submit('Delete', array('class' => 'btn btn-danger', 'onClick' => "return confirm('Bạn có chắc chắn muốn xóa')")) }}
+                        {{ Form::submit('Delete', array('class' => 'btn btn-danger del')) }}
                     {{ Form::close() }}
                 </td>
             </tr>

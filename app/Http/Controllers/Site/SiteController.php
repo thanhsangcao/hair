@@ -4,59 +4,52 @@ namespace App\Http\Controllers\Site;
  
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Salon;
 use App\Booking;
-use App\User;
-use App\TimeSheetStylist;
 use App\Http\Requests\SiteFormRequest;
-use Session;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\DB;
+use App\Repositories\Contracts\SiteRepositoryInterface;
 
 class SiteController extends Controller
 {
+    protected $siteRepository;
+
+    public function __construct(SiteRepositoryInterface $siteRepository)
+    {
+        $this->siteRepository = $siteRepository;
+    }
+
     public function create()
     {
-        $salons = Salon::where('id', '<>', 1)->get();
-        $selectSalon[null] = trans('main.select');
-        foreach($salons as $salon) {
-            $selectSalon[ $salon->id ] = $salon->name . ' - ' . $salon->address;
-        }
-        
+        $selectSalon = $this->siteRepository->create();
+        $stylist_id = [];
+        $timeSheet = [];
 
-        return view('sites.booking', compact('selectSalon'));
+        return view('sites.booking', compact('selectSalon', 'stylist_id', 'timeSheet'));
     }
 
     public function store(Request $request)
     {
-        $booking = Booking::create([
-            'salon_id' => $request['salon_id'],
-            'status' => trans('booking.nobook'),
-            'name' => $request['name'],
-            'phone_number' => $request['phone_number'],
-            'time_booking' => $request['timesheet'],
-            'stylist_id' => $request['stylist_id']
-        ]);
+        $input = $request->all();
+        $input['status'] = trans('booking.nobook');
+        $booking = $this->siteRepository->store($input);
 
         return redirect('/')->with('status', trans(''));
     }
     
-    public function getStylist(Request $request){
+    public function getStylist(Request $request)
+    {
         $salon_id = $request->salon_id;
-        $users = User::where('salon_id', $salon_id)->get();
-        $selectStylist[null] = trans('main.select');
-        foreach ($users as $user) {
-            $selectStylist[ $user->id ] = $user->name;
-        }
-        $view = view("sites.choose_stylist", compact('selectStylist','users'))->render();
+        $users = $this->siteRepository->getStylist($salon_id);
+        $view = view('sites.choose_stylist', compact('users'))->render();
 
         return response()->json(['html' => $view]);
     }
 
-    public function getTimesheet(Request $request){
+    public function getTimesheet(Request $request)
+    {
         $stylist_id = $request->stylist_id;
-        $timeSheet = TimeSheetStylist::where('stylist_id', $stylist_id)->first();
-        $view = view("sites.choose_timesheet", compact('timeSheet'))->render();
+        $timeSheet = $this->siteRepository->getTimeSheet($stylist_id);
+        $view = view('sites.choose_timesheet', compact('timeSheet'))->render();
 
         return response()->json(['html' => $view]);
     }
