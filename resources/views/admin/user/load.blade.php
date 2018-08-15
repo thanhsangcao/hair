@@ -1,6 +1,6 @@
 <div class="table-responsive load">
     <a href="{{ asset('admin/users/create') }}" class="btn btn-primary">{{ __('Add User') }}</a>
-    <table class="table table-bordered" id="salon">             
+    <table class="table table-bordered">             
         <thead>
             <tr class="bg-primary">
                 <th>{{ __('ID') }}</th>

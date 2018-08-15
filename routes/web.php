@@ -64,12 +64,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
     Route::delete('bookings/{id}', 'BookingController@destroy');
 
 });
-Route::get('home', 'Site\SiteController@create');
-Route::post('home', 'Site\SiteController@store');
-Route::get('booking', 'Site\SiteController@creates');
-Route::post('booking', 'Site\SiteController@stores');
-Route::get('bookings', 'Site\SiteController@getThem');
-Route::post('bookings', 'Site\SiteController@postThem');
-Route::get('bookingss', 'Site\SiteController@getThems');
-Route::post('bookingss', 'Site\SiteController@postThems');
 
+Route::group(['namespace' => 'Site'], function(){
+    Route::get('home', 'SiteController@create');
+    Route::post('home', 'SiteController@store');
+    Route::post('getStylist', 'SiteController@getStylist');
+    Route::post('getTimesheet', 'SiteController@getTimesheet');
+});

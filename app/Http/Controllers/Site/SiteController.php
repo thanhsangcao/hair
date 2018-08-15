@@ -12,89 +12,52 @@ use App\Http\Requests\SiteFormRequest;
 use Session;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
+
 class SiteController extends Controller
 {
     public function create()
     {
-        return view('sites.booking');
+        $salons = Salon::where('id', '<>', 1)->get();
+        $selectSalon[null] = trans('main.select');
+        foreach($salons as $salon) {
+            $selectSalon[ $salon->id ] = $salon->name . ' - ' . $salon->address;
+        }
+        
+
+        return view('sites.booking', compact('selectSalon'));
     }
 
     public function store(Request $request)
     {
-        $name = $request->name;
-        $phone_number = $request->phone_number;
-        Session::put('name', $name);
-        Session::put('phone_number', $phone_number);
-
-        return redirect('/booking')->with('status', trans(''));
-    }
-    public function creates()
-    {
-        $salon = Salon::all();
-        $salon = Salon::where('id', '<>', 1)->get();
-        $user = User::where('permission', 2)->get();
-
-        return view('sites.booking1', compact('user', 'salon'));
-    }
-
-    public function stores(Request $request)
-    {
-        $name = $request->name;
-        $phone_number = $request->phone_number;
-        $salon_id = $request->salon;
-        Session::put('name', $name);
-        Session::put('phone_number', $phone_number);
-        Session::put('salon_id', $salon_id);
-
-        return redirect('/bookings')->with('status', trans(''));
-    }
-    public function getThem()
-    {
-        $salon = Salon::all();
-        $timesheetstylist = TimeSheetStylist::all();
-        $salon = Salon::where('id', '<>', 1)->get();
-        $user = User::where('permission', 2)->get();
-
-        return view('sites.booking2', compact('user', 'salon', 'timesheetstylist'));
-        
-    }
-
-    public function postThem(Request $request)
-    {
-        $name = $request->name;
-        $phone_number = $request->phone_number;
-        $salon_id = $request->salon_id;
-        $stylist_id = $request->user;
-        Session::put('name', $name);
-        Session::put('phone_number', $phone_number);
-        Session::put('salon_id', $salon_id);
-        Session::put('stylist_id', $stylist_id);
-
-        return redirect('/bookingss')->with('status', trans(''));
-    }
-     public function getThems()
-    {
-
-        $timesheetstylist = TimeSheetStylist::all();
-        $user = User::where('permission', 2)->get();
-        $salon = Salon::where('id', '<>', 1)->get();
-
-        return view('sites.booking3', compact('user', 'salon', 'timesheetstylist'));
-    }
-
-    public function postThems(Request $request)
-    {
-        $booking = new Booking;
-        $booking = $booking->create([
+        $booking = Booking::create([
             'salon_id' => $request['salon_id'],
             'status' => trans('booking.nobook'),
             'name' => $request['name'],
             'phone_number' => $request['phone_number'],
-            'time_booking' => $request['timesheetstylist'],
+            'time_booking' => $request['timesheet'],
             'stylist_id' => $request['stylist_id']
         ]);
-        $booking->save();
 
         return redirect('/')->with('status', trans(''));
+    }
+    
+    public function getStylist(Request $request){
+        $salon_id = $request->salon_id;
+        $users = User::where('salon_id', $salon_id)->get();
+        $selectStylist[null] = trans('main.select');
+        foreach ($users as $user) {
+            $selectStylist[ $user->id ] = $user->name;
+        }
+        $view = view("sites.choose_stylist", compact('selectStylist','users'))->render();
+
+        return response()->json(['html' => $view]);
+    }
+
+    public function getTimesheet(Request $request){
+        $stylist_id = $request->stylist_id;
+        $timeSheet = TimeSheetStylist::where('stylist_id', $stylist_id)->first();
+        $view = view("sites.choose_timesheet", compact('timeSheet'))->render();
+
+        return response()->json(['html' => $view]);
     }
 }

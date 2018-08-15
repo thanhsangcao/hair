@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
 
-    {{ Html::style('bower_components/bower-hair/css/bootstrap.min.css') }}
-    {{ Html::style('bower_components/bower-hair/css/datepicker3.css') }}
+    {{ Html::style('bower_components/bower-hair/admin/css/bootstrap.min.css') }}
+    {{ Html::style('bower_components/bower-hair/admin/css/datepicker3.css') }}
     {{ Html::style('css/styles_admin.css') }}
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -50,13 +50,13 @@
             </div>
         </div><!-- /.col-->
     </div><!-- /.row -->    
-    {{ Html::script('bower_components/bower-hair/js/jquery-1.11.1.min.js') }}
-    {{ Html::script('bower_components/bower-hair/js/bootstrap.min.js') }}
-    {{ Html::script('bower_components/bower-hair/js/js/chart.min.js') }}
-    {{ Html::script('bower_components/bower-hair/js/chart-data.js') }}
-    {{ Html::script('bower_components/bower-hair/js/easypiechart.js') }}
-    {{ Html::script('bower_components/bower-hair/js/easypiechart-data.js') }}
-    {{ Html::script('bower_components/bower-hair/js/bootstrap-datepicker.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/jquery-1.11.1.min.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/bootstrap.min.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/js/chart.min.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/chart-data.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/easypiechart.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/easypiechart-data.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/bootstrap-datepicker.js') }}
         
     <script>
         !function ($) {
