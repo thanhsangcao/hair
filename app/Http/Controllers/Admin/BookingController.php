@@ -1,17 +1,23 @@
 <?php
- namespace App\Http\Controllers\Admin;
- use Illuminate\Http\Request;
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\RenderBooking;
-use App\Salon;
-use App\TimeSheetStylist;
-use App\User;
 use App\Booking;
+use App\Service;
+use App\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\DB;
-use App\Http\Requests\RenderBookingFormRequest;
+use App\Repositories\Eloquents\BookingRepository;
+
 class BookingController extends Controller
 {
+    protected $bookingRepository;
+
+    public function __construct(BookingRepository $bookingRepository)
+    {
+        $this->bookingRepository = $bookingRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,13 +25,9 @@ class BookingController extends Controller
      */
     public function index(Request $request)
     {
-        $booking = Booking::paginate(config('model.pagination'));
-        
-        if ($request->ajax()) {
-            return view('admin.booking.load', ['booking' => $booking])->render();  
-        }
+        $bookings = $this->bookingRepository->all();
 
-        return view('admin.booking.index', compact('booking'));
+        return view('admin.booking.index', compact('bookings'));
     }
      /**
      * Show the form for creating a new resource.
@@ -62,12 +64,13 @@ class BookingController extends Controller
      */
     public function edit($id)
     {
-        $timesheetstylist = TimeSheetStylist::all();
-        $user = User::where('permission', 2)->get();
-        $salon = Salon::where('id', '<>', 1)->get();
-        $booking = Booking::findOrFail($id);
-        
-        return view('admin.booking.edit', compact('user', 'salon', 'booking', 'timesheetstylist'));
+       
+        $booking = $this->bookingRepository->find($id);
+        $services = $this->bookingRepository->getSelectedServices($id);
+        $selectStylist = $this->bookingRepository->getStylistBySalon($id);
+        $selectedStylist = $booking->stylist->id;
+
+        return view('admin.booking.edit', compact('booking', 'services', 'selectStylist', 'selectedStylist'));
     }
      /**
      * Update the specified resource in storage.
@@ -78,16 +81,10 @@ class BookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $booking = Booking::findOrFail($id);
-        $booking->salon_id = $request->get('salon_id');
-        $booking->name = $request->get('name');
-        $booking->phone_number = $request->get('phone_number');
-        $booking->time_booking = $request->get('time');
-        $booking->stylist_id = $request->get('stylist_id');
-        $booking->status = $request->get('status');
-        $booking->save();
+        $booking = $this->bookingRepository->find($id);
+        $booking->update($request->all());
 
-        return redirect('/admin/bookings/' . $id . '/edit')->with('status', trans(''));
+        return redirect('/admin/bookings/' . $id . '/edit')->with('status', trans('admin.booking_edit'));
     }
      /**
      * Remove the specified resource from storage.
@@ -97,8 +94,33 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        $booking = Booking::destroy($id);
+        $booking = $this->bookingRepository->destroy($id);
 
         return redirect('/admin/bookings/')->with('status', trans(''));
+    }
+    public function changeStatus($id,$status_id)
+    {
+        try {
+            $booking = $this->bookingRepository->changeStatus($id,$status_id);
+
+            return redirect('/admin/bookings/' . $id . '/edit')->with('status', trans('booking.update_status'));
+            
+        } catch (ModelNotFoundException $e) {
+            return trans('booking.false');
+        }
+    }
+    public function addService(Request $request, $id){
+        $service_id = $request->service_id;
+        $booking = $this->bookingRepository->find($id);
+        $booking->services()->attach($service_id);
+
+        return $service_id;
+    }
+    public function deleteService(Request $request, $id){
+        $booking = $this->bookingRepository->find($id);
+        $service_id = $request->service_id;
+        $booking->services()->detach($service_id);
+
+        return back();
     }
 }

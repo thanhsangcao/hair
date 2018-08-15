@@ -27,7 +27,9 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             'App\Repositories\Contracts\SiteRepositoryInterface',
-            'App\Repositories\Eloquents\SiteRepository'
+            'App\Repositories\Eloquents\SiteRepository',
+            'App\Repositories\Contracts\BookingRepositoryInterface',
+            'App\Repositories\Eloquents\BookingRepository'
         );
     }
 }

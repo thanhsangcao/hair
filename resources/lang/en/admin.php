@@ -19,11 +19,12 @@ return [
     'User_edit' => 'The user has been updated!',
     'User_delete' => 'The user has been deleted!',
     'Service_create' => 'A new Service has been created!',
-    'Service_edit' => 'A new Service has been created!',
-    'Service_delete' => 'A new Service has been created!',
+    'Service_edit' => 'The service has been updated!',
+    'Service_delete' => 'The service has been deleted!',
     'render_create' => 'A new RenderBooking has been created!',
     'render_edit' => 'The Render has been updated!',
     'render_delete' => 'The Render has been delete!',
     'User_unique' => 'Tên email trùng',
-    'Confirm' => 'Are you sure?'
+    'Confirm' => 'Are you sure?',
+    'booking_edit' => 'The Booking has been updated!',
 ];

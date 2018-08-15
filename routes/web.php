@@ -62,6 +62,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
     Route::get('bookings/{id}/edit', 'BookingController@edit');
     Route::post('bookings/{id}/edit', 'BookingController@update');
     Route::delete('bookings/{id}', 'BookingController@destroy');
+    Route::get('bookings/{id}/status/{status_id}','BookingController@changeStatus');
+    Route::post('bookings/{id}/addService', 'BookingController@addService');
+    Route::post('bookings/{id}/edit', 'BookingController@deleteService');
 
 });
 

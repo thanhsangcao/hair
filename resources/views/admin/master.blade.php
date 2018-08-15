@@ -3,19 +3,25 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     {{ Html::style('bower_components/bower-hair/admin/css/bootstrap.min.css') }}
     {{ Html::style('bower_components/bower-hair/admin/css/datepicker3.css') }}
     {{ Html::style('css/styles_admin.css') }}
+    {{ Html::style('bower_components/bower-hair/admin/css/bootstrap-table.css') }}
     {{ Html::script('bower_components/bower-hair/admin/js/lumino.glyphs.js') }}
-    {{ Html::style('css\style.css') }}
-    
 
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="{{ asset('admin') }}">{{ __('Hair Salon Manager') }}</a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
@@ -31,7 +37,7 @@
     </nav>
         
     <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-        <ul class="nav menu">
+        <ul class="nav menu" id="navi">
             <li role="presentation" class="divider"></li>
             <li class="active"><a href="{{ asset('admin') }}"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> {{ __('Homepage') }}</a></li>
             @if (Auth::check())
@@ -55,8 +61,12 @@
         
     </div><!--/.sidebar-->
     @yield('main')
+
     {{ Html::script('bower_components/bower-hair/admin/js/jquery-1.11.1.min.js') }}
     {{ Html::script('js/pagination.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/bootstrap-table.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/chart-data.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/chart.min.js') }}
     {{ Html::script('bower_components/bower-hair/admin/js/bootstrap.min.js') }}
     {{ Html::script('bower_components/bower-hair/admin/js/chart.min.js') }}
     {{ Html::script('bower_components/bower-hair/admin/js/chart-data.js') }}

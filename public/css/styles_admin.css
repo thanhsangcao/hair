@@ -821,7 +821,7 @@ h1.page-header {
 /*Tables*/
 .table {
 	background: #fff;
-	margin-top:20px;
+	margin-top:0px;
 	text-align:center;
 }
 
@@ -850,6 +850,7 @@ h1.page-header {
 	vertical-align: middle;
 	height: 50px;
 	text-align:center;
+	margin-top: 0;
 }
 
 .fixed-table-pagination .pagination {
@@ -945,4 +946,12 @@ h1.page-header {
 
 #avatar{
     cursor: pointer;
+}
+
+.btn-add{
+	margin-bottom: 10px;
+}
+
+#btn-service{
+	text-align: center;
 }
