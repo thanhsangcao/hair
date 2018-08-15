@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TimeSheetStylist extends Model
 {
-    public function user()
-    {
-    	return $this->belongsTo(User::class,'stylist_id');
-    }
+
 
         protected $fillable = [
         'stylist_id',
@@ -21,5 +18,10 @@ class TimeSheetStylist extends Model
         'sat',
         'sun',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'stylist_id', 'id');
+    }
 
 }

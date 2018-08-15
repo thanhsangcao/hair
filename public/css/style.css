@@ -1,4 +1,10 @@
-.my_slider{
+.my_slider {
     margin-top:10px;
     margin-bottom: 30px;
+}
+.table-border {
+	border-style:inset;
+}
+.table-headline {
+	border-style:solid;
 }
