@@ -21,11 +21,11 @@
                         </h4>
                             <div class="form-group">
                                 {!! Form::label('', __('Name')) !!}
-                                {{ Form::text('name', '', ['class' => 'name-input form-control input-lg', 'placeholder' => trans('booking.name')]) }}
+                                {{ Form::text('name', '', ['class' => 'name-input form-control input-lg', 'placeholder' => trans('booking.name'), 'required' => 'required']) }}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('', __('Phone')) !!}
-                                {{ Form::text('phone_number', '', ['class' => 'phone-input form-control input-lg', 'placeholder' => trans('booking.phone')]) }}
+                                {{ Form::text('phone_number', '', ['class' => 'phone-input form-control input-lg', 'placeholder' => trans('booking.phone'), 'required' => 'required']) }}
                             </div>
                                 {!! Form::submit(trans('booking.next'), ['type' => 'submit', 'class' => 'btn btn-primary', 'name' => 'submit']) !!}
                 {{ Form::close() }}
