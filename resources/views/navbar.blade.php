@@ -23,13 +23,17 @@
                     <ul class="dropdown-menu" role="menu">
 
                     @if (Auth::check())
-                        @role('manager')
+                        @role('admin')
                             <li><a href="{{ asset('/admin') }}">{!! trans('main.Admin') !!}</a></li>
                         @endrole
-                        <li><a href="{{ asset('users/logout') }}">{!! trans('main.Logout') !!}</a></li>
+                    @endif
+                    @if (Auth::check())
+                        @role('stylist')
+                            <li><a href="{{ asset('/admin') }}">{!! trans('main.Member') !!}</a></li>
+                        @endrole
+                        <li><a href="{{ asset('admin/logout') }}">{!! trans('main.Logout') !!}</a></li>
                     @else
-                        <li><a href="{{ asset('users/register') }}">{!! trans('main.Register') !!}</a></li>
-                        <li><a href="{{ asset('users/login') }}">{!! trans('main.Login') !!}</a></li>
+                        <li><a href="{{ asset('admin/login') }}">{!! trans('main.Login') !!}</a></li>
                     @endif
 
                     </ul>

@@ -44,21 +44,104 @@
         </div>
     </div>
 </div>
-<div>
-    <div class="col-md-12 text-center" >
-        <button type="button" class="btn btn-lg btn-success" >{!! trans('main.Booking') !!}</button>          
-        
-    </div>
-</div>
-<div class="col-md-12 col-xs-12 col-lg-12"> 
-    <div class="btn-group  btn-group-justified" role="group" aria-label="...">
-        <div class="btn-group " role="group">
-            <button type="button" class="btn btn-primary">{!! trans('main.Salons') !!}</button>
-        </div>
-        <div class="btn-group" role="group">
-            <button type="button" class="btn btn-primary">{!! trans('main.Stylists') !!}</button>
+    <div>
+        <div class="col-md-12 text-center" >
+            <a href="{{ asset('/home')}}" class="btn btn-success">{!! trans('main.Booking') !!}</a>
         </div>
     </div>
+    <div>
+        <div class="col-md-12 "> 
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#salon_list">
+            {{ __('Our salons')}}
+            </button>
+            <div id="salon_list" class="collapse">
+                        <div class="bootstrap-table">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="salon">             
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th>{{ __('Name') }}</th>
+                                            <th class="width_salon">{{ __('Address') }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($salons as $salon)
+                                        <tr>
+                                            <td>{{ $salon->name }}</td>
+                                            <td>{{ $salon->address }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                <script type="text/javascript">
+                                $(document).ready(function(e) {
+                                    $('.pagination li a').click(function() {
+                                        
+                                        var page = $(this).attr('href').split('page=')[1];
+                                        
+                                        $.get('product?page=' + page, function(data) {
+                                            $('body').html(data);
+                                        }); 
+
+                                        return false;
+                                    });
+                                });
+                                </script>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="col-md-12 "> 
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#stylist_list">
+            {{ __('Our stylists')}}
+            </button>
+            <div id="stylist_list" class="collapse">
+                        <div class="bootstrap-table">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="salon">             
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th>{{ __('Name') }}</th>
+                                            <th class="width_salon">{{ __('Phone Number') }}</th>
+                                            <th class="width_salon">{{ __('Branch') }}</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($users as $user)
+                                        @if($user->permission =='2')
+                                        <tr>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->phone_number }}</td>
+                                            <td>{{ $user->salon->name }}</td>
+
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                <script type="text/javascript">
+                                $(document).ready(function(e) {
+                                    $('.pagination li a').click(function() {
+                                        
+                                        var page = $(this).attr('href').split('page=')[1];
+                                        
+                                        $.get('product?page=' + page, function(data) {
+                                            $('body').html(data);
+                                        }); 
+
+                                        return false;
+                                    });
+                                });
+                                </script>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 @endsection
 
