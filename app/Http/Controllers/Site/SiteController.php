@@ -30,7 +30,8 @@ class SiteController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $input['status'] = trans('booking.nobook');
+        $input['status'] = trans('booking.new');
+        $input['grand_total'] = 100000;
         $booking = $this->siteRepository->store($input);
 
         return redirect('/')->with('status', trans(''));

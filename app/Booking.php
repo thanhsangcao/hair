@@ -21,8 +21,16 @@ class Booking extends Model
     {
         return $this->belongsTo('App\Salon', 'salon_id', 'id');
     }
-    public function user()
+    public function stylist()
     {
         return $this->belongsTo('App\User', 'stylist_id', 'id');
+    }
+    public function services()
+    {
+        return $this->belongsToMany('App\Service', 'booking_service', 'booking_id', 'service_id');
+    }
+    public function bill()
+    {
+        return $this->hasOne('App\Bill');
     }
 }

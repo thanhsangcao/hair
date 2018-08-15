@@ -18,7 +18,7 @@ class AddForeignKeyInBookingsTable extends Migration
             $table->string('name')->after('status');
             $table->string('phone_number')->after('name');
             $table->string('time_booking')->change();
-            $table->float('grand_total')->nullable()->change();
+            $table->integer('grand_total')->nullable()->change();
             $table->integer('salon_id')->unsigned()->index()->change();
             $table->integer('stylist_id')->unsigned()->index()->change();
             $table->integer('render_booking_id')->unsigned()->nullable()->index()->change();
