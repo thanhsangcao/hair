@@ -8,7 +8,6 @@
     {{ Html::style('bower_components/bower-hair/css/datepicker3.css') }}
     {{ Html::style('css/styles_admin.css') }}
     {{ Html::script('bower_components/bower-hair/js/lumino.glyphs.js') }}
-    {{ Html::style('bower_components\bootstrap\dist\css\bootstrap.css') }}
     {{ Html::style('css\style.css') }}
     {{ Html::script('bower_components/bower-hair/js/jquery-1.11.1.min.js') }}
     {{ Html::script('js/pagination.js') }}
@@ -37,15 +36,18 @@
             <li class="active"><a href="{{ asset('admin') }}"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> {{ __('Homepage') }}</a></li>
             @if (Auth::check())
                 @role('admin')
-                    <li><a href="{{ asset('admin/users') }}"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> {{ __('User') }}</a></li>
-                    <li><a href="{{ asset('admin/salons') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('Salon') }}</a></li>
-                    <li><a href="{{ asset('admin/services') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('Service') }}</a></li>
-                    <li><a href="{{ asset('admin/renderbookings') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> {{ __('RenderBooking') }}</a></li>
+                    <li><a href="{{ asset('admin/users') }}"><svg class="glyph stroked male user"><use xlink:href="#stroked-male-user"></use></svg> {{ __('User') }}</a></li>
+                    <li><a href="{{ asset('admin/salons') }}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg>{{ __('Salon') }}</a></li>
+                    <li><a href="{{ asset('admin/services') }}"><svg class="glyph stroked star"><use xlink:href="#stroked-star"/></svg>{{ __('Service') }}</a></li>
+                    <li><a href="{{ asset('admin/renderbookings') }}"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"/></svg>{{ __('RenderBooking') }}</a></li>
+                    <li><a href="{{ asset('admin/manage_stylists') }}"><svg class="glyph stroked clock"><use xlink:href="#stroked-clock"/></svg>{{ __('Stylists') }}</a></li>
+                    <li><a href="{{ asset('admin/bookings') }}"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>{{ __('Bookings') }}</a>
+                    </li>
                 @endrole
             @endif
             @if (Auth::check())
                 @role('stylist')
-                <li><a href="{{ asset('stylists/') }}"> {{ __('Profile') }}</a></li>
+                <li><a href="{{ asset('admin/stylists') }}"> {{ __('Profile') }}</a></li>
                 @endrole
             @endif
             <li role="presentation" class="divider"></li>
@@ -61,8 +63,6 @@
     {{ Html::script('bower_components/bower-hair/js/easypiechart-data.js') }}
     {{ Html::script('bower_components/bower-hair/js/bootstrap-datepicker.js') }}
     {{ Html::script('bower_components/bower-hair/js/myscript.js') }}
-    {{ Html::script('bower_components/jquery/dist/jquery.min.js') }}
-    {{ Html::script('bower_components\bootstrap\dist\js\bootstrap.js') }}
 
     <script>
         $('#calendar').datepicker({
