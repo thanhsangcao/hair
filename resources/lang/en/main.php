@@ -22,5 +22,12 @@ return [
     'add_timesheet' => 'Add your timesheet',
     'addtimesheetsuccessful' => 'You have added your timesheet',
     'timesheet_edited' => 'Your timesheet has been updated',
-
+    'select' => 'Please select',
+    'permission_stylist' => '2',
+    'step_1' => 'Step 1: Infomation',
+    'step_2' => 'Step 2: Choose a Salon',
+    'step_3' => 'Step 3: Schedule',
+    'start' => 'Let\'s start with the basic details.',
+    'select_salon' => 'Which salon would you want?',
+    'booking' => 'Book a Haircut',  
 ];

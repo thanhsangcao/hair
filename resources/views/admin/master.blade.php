@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    {{ Html::style('bower_components/bower-hair/css/bootstrap.min.css') }}
-    {{ Html::style('bower_components/bower-hair/css/datepicker3.css') }}
+    {{ Html::style('bower_components/bower-hair/admin/css/bootstrap.min.css') }}
+    {{ Html::style('bower_components/bower-hair/admin/css/datepicker3.css') }}
     {{ Html::style('css/styles_admin.css') }}
-    {{ Html::script('bower_components/bower-hair/js/lumino.glyphs.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/lumino.glyphs.js') }}
     {{ Html::style('css\style.css') }}
-    {{ Html::script('bower_components/bower-hair/js/jquery-1.11.1.min.js') }}
-    {{ Html::script('js/pagination.js') }}
+    
+
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -55,14 +55,15 @@
         
     </div><!--/.sidebar-->
     @yield('main')
-    
-    {{ Html::script('bower_components/bower-hair/js/bootstrap.min.js') }}
-    {{ Html::script('bower_components/bower-hair/js/chart.min.js') }}
-    {{ Html::script('bower_components/bower-hair/js/chart-data.js') }}
-    {{ Html::script('bower_components/bower-hair/js/easypiechart.js') }}
-    {{ Html::script('bower_components/bower-hair/js/easypiechart-data.js') }}
-    {{ Html::script('bower_components/bower-hair/js/bootstrap-datepicker.js') }}
-    {{ Html::script('bower_components/bower-hair/js/myscript.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/jquery-1.11.1.min.js') }}
+    {{ Html::script('js/pagination.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/bootstrap.min.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/chart.min.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/chart-data.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/easypiechart.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/easypiechart-data.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/bootstrap-datepicker.js') }}
+    {{ Html::script('bower_components/bower-hair/admin/js/myscript.js') }}
 
     <script>
         $('#calendar').datepicker({

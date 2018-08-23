@@ -43,7 +43,6 @@
             </a>
         </div>
     </div>
-</div>
     <div>
         <div class="col-md-12 text-center" >
             <a href="{{ asset('/home') }}" class="btn btn-success">{!! trans('main.Booking') !!}</a>
@@ -84,50 +83,34 @@
             {{ __('Our stylists')}}
             </button>
             <div id="stylist_list" class="collapse">
-                        <div class="bootstrap-table">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="salon">             
-                                    <thead>
-                                        <tr class="bg-primary">
-                                            <th>{{ __('Name') }}</th>
-                                            <th class="width_salon">{{ __('Phone Number') }}</th>
-                                            <th class="width_salon">{{ __('Branch') }}</th>
+                <div class="bootstrap-table">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="salon">             
+                            <thead>
+                                <tr class="bg-primary">
+                                    <th>{{ __('Name') }}</th>
+                                    <th class="width_salon">{{ __('Phone Number') }}</th>
+                                    <th class="width_salon">{{ __('Branch') }}</th>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($users as $user)
-                                        @if($user->permission =='2')
-                                        <tr>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->phone_number }}</td>
-                                            <td>{{ $user->salon->name }}</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($users as $user)
+                                @if($user->permission == __('main.permission_stylist'))
+                                <tr>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->phone_number }}</td>
+                                    <td>{{ $user->salon->name }}</td>
 
-                                        </tr>
-                                        @endif
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                                <script type="text/javascript">
-                                $(document).ready(function(e) {
-                                    $('.pagination li a').click(function() {
-                                        
-                                        var page = $(this).attr('href').split('page=')[1];
-                                        
-                                        $.get('product?page=' + page, function(data) {
-                                            $('body').html(data);
-                                        }); 
-
-                                        return false;
-                                    });
-                                });
-                                </script>
-                            </div>
-                        </div>
+                                </tr>
+                                @endif
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 </div>
 @endsection
-
