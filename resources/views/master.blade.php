@@ -21,7 +21,6 @@
 <body>
 @include('navbar')
     
-    
 @yield('content')
 </body>
     {{ Html::script('bower_components/bower-hair/booking/js/jquery-2.2.4.min.js') }}

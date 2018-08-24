@@ -86,9 +86,7 @@
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     {!! Form::label('', __('Choose a Stylist')) !!}
-                                                    <select class="form-control stylist" id="stylist_id" name="stylist_id" required="">
-
-                                                    </select>
+                                                    {!! Form::select('stylist_id', $stylist_id, null,['class' => 'form-control stylist', 'id' => 'stylist_id']) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -98,10 +96,8 @@
                                                     <i class="material-icons">date_range</i>
                                                 </span>
                                                 <div class="form-group label-floating">
-                                                     {!! Form::label('', __('Choose a Day')) !!}
-                                                    <select class="form-control timesheet" id="timesheet" name="timesheet" required="">
-                                                        
-                                                    </select>
+                                                    {!! Form::label('', __('Choose a Day')) !!}
+                                                    {!! Form::select('time_booking', $timeSheet, null,['class' => 'form-control timesheet', 'id' => 'timesheet']) !!}
                                                 </div>
                                             </div>
                                         </div>
