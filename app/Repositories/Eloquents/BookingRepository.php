@@ -37,9 +37,8 @@ class BookingRepository implements BookingRepositoryInterface
 
         return $selectStylist;
     }
-    public function changeStatus($id, $status_id)
+    public function changeStatus($booking, $status_id)
     {
-    	$booking = $this->find($id);
         if ($status_id == trans('booking.new')) {
             $booking->status = trans('booking.new');
         }else if($status_id == trans('booking.confirm')) {

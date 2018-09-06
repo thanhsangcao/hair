@@ -25,7 +25,11 @@
                     @include('admin.booking.status')
                 </td>
                 <td>
-                    <a href="{{ asset('admin/bookings/' . $booking->id . '/edit') }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Edit') }}</a>
+                    @if ($booking->status != __('booking.complete'))
+                        <a href="{{ asset('admin/bookings/' . $booking->id . '/edit') }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Edit') }}</a>
+                    @else
+                        <a href="{{ asset('admin/bookings/' . $booking->id . '/edit') }}" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Detail') }}</a>
+                    @endif
                     {{ Form::open(array( 'url' => 'admin/bookings/' . $booking->id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'btn btn-danger del')) }}

@@ -59,18 +59,23 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
     Route::post('manage_stylists/{id}/edit', 'ManageTimesheetController@update');
 
     Route::get('bookings', 'BookingController@index')->name('bookings.index');
-    Route::get('bookings/{id}/edit', 'BookingController@edit');
+    Route::get('bookings/{id}/edit', 'BookingController@edit')->name('bookings.edit');
     Route::post('bookings/{id}/edit', 'BookingController@update');
     Route::delete('bookings/{id}', 'BookingController@destroy');
     Route::get('bookings/{id}/status/{status_id}','BookingController@changeStatus');
     Route::post('bookings/{id}/addService', 'BookingController@addService');
-    Route::post('bookings/{id}/edit', 'BookingController@deleteService');
+    Route::get('bookings/{id}/deleteService/{service_id}', 'BookingController@deleteService');
+
+    Route::get('bills', 'BillController@index');
+    Route::get('bills/create/{booking_id}', 'BillController@create')->name('bills.create');
+    Route::post('bills/create/{booking_id}', 'BillController@store');
+    Route::get('bills/{booking_id}/show', 'BillController@show')->name('bills.show');
 
 });
 
 Route::group(['namespace' => 'Site'], function(){
-    Route::get('home', 'SiteController@create');
-    Route::post('home', 'SiteController@store');
+    Route::get('booking', 'SiteController@create');
+    Route::post('booking', 'SiteController@store');
     Route::post('getStylist', 'SiteController@getStylist');
     Route::post('getTimesheet', 'SiteController@getTimesheet');
 });

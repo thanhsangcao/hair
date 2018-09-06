@@ -12,7 +12,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">{{ __('Edit Booking #') . $booking->id }}</div>
                     <div class="panel-body">
-                        {!! Form::open(['method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+                        {!! Form::open(['method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form']) !!}
                             <div class="form-group" >
                             <h4>
                                 {!! Form::label('', __('Status')) !!}
@@ -29,21 +29,21 @@
                                 <div class="col-xs-6">
                                     <div class="form-group" >
                                         {!! Form::label('', __('Name')) !!}
-                                        {!! Form::text('name', $booking->name, ['class' => 'form-control', 'required' => 'required']) !!}
+                                        {!! Form::text('name', $booking->name, ['class' => 'form-control', 'required' => 'required', 'form' => 'form']) !!}
                                     </div>
                                     <div class="form-group" >
                                         {!! Form::label('', __('Phone')) !!}
-                                        {!! Form::text('phone_number', $booking->phone_number, ['class' => 'form-control', 'required' => 'required']) !!}
+                                        {!! Form::text('phone_number', $booking->phone_number, ['class' => 'form-control', 'required' => 'required', 'form' => 'form']) !!}
                                     </div>
                                     <div class="form-group" >
                                         {!! Form::label('', __('Stylist')) !!}
-                                        {!! Form::select('stylist_id', $selectStylist, $selectedStylist, ['class' => 'form-control', 'required' => 'required']) !!}
+                                        {!! Form::select('stylist_id', $selectStylist, $selectedStylist, ['class' => 'form-control', 'required' => 'required', 'form' => 'form']) !!}
                                     </div>
                                     <div class="form-group">
                                         {!! Form::label('', __('Service')) !!}
                                         <br/>
-                                        @if ($booking->status != __('booking.complete'))
-                                            {!! Form::button('Add Service', ['class' => 'btn btn-primary btn-add', 'data-toggle' => 'modal', 'data-target' => '#myModal']) !!}
+                                        @if (!isset($booking->bill))
+                                            {!! Form::button('Add Service', ['class' => 'btn btn-primary btn-add', 'data-toggle' => 'modal', 'data-target' => '#myModal', 'form' => 'delete']) !!}
                                         @endif
                                         <div class="table-responsive">
                                             <table class="table table-bordered">
@@ -51,7 +51,7 @@
                                                     <tr class="bg-primary">
                                                         <th>{{ __('Name') }}</th>
                                                         <th>{{ __('Price (VND)') }}</th>
-                                                        @if ($booking->status != __('booking.complete'))
+                                                        @if (!isset($booking->bill))
                                                         <th id='options'>{{ __('Action') }}</th>
                                                         @endif
                                                     </tr>
@@ -61,12 +61,9 @@
                                                     <tr>
                                                         <td>{{ $service->name }}</td>
                                                         <td>{{ number_format($service->price) }}</td>
-                                                        @if ($booking->status != __('booking.complete'))
+                                                        @if (!isset($booking->bill))
                                                         <td>
-                                                            {{ Form::open(array( 'url' => 'admin/bookings/' . $booking->id . '/edit', 'class' => 'pull-right')) }}
-                                                                {{ Form::hidden('service_id', $service->id) }}
-                                                                {{ Form::submit('Delete', array('class' => 'btn btn-danger del')) }}
-                                                            {{ Form::close() }}
+                                                            <a href="{{ asset('admin/bookings/' . $booking->id . '/deleteService/' . $service->id) }}" class="btn btn-danger del">{{ __('Delete') }}</a>
                                                         </td>
                                                         @endif
                                                     </tr>
@@ -76,7 +73,7 @@
                                                     <tr>
                                                         <td><b>{{ __('Grand Total') }}</b></td>
                                                         <td>{{ number_format($booking->services->sum('price')) }}</td>
-                                                        @if ($booking->status != __('booking.complete'))
+                                                        @if (!isset($booking->bill))
                                                         <td></td>
                                                         @endif
                                                     </tr>
@@ -86,10 +83,15 @@
                                     </div>
                                     <div class="form-group" >
                                         @if ($booking->status != __('booking.complete'))
-                                            {!! Form::button('OK', ['type' => 'submit', 'class' => 'btn btn-primary', 'name' => 'submit']) !!}
+                                            {!! Form::button('OK', ['type' => 'submit', 'class' => 'btn btn-primary', 'name' => 'submit', 'form' => 'form']) !!}
                                             <a href="{{ route('bookings.index') }}" class="btn btn-danger">{{ __('Cancel') }}</a>
                                         @else
                                             <a href="{{ route('bookings.index') }}" class="btn btn-primary">{{ __('Back') }}</a>
+                                            @if( !isset($booking->bill))
+                                                <a href="{{ route('bills.create', $booking->id) }}" class="btn btn-primary">{{ __('Create Bill') }}</a>
+                                            @else
+                                                <a href="{{ route('bills.show', $booking->bill->id) }}" class="btn btn-primary">{{ __('Show Bill') }}</a>
+                                            @endif
                                         @endif
                                     </div>
                                 </div>
@@ -151,7 +153,6 @@
                     </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>

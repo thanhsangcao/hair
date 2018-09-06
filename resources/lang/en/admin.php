@@ -27,4 +27,5 @@ return [
     'User_unique' => 'Tên email trùng',
     'Confirm' => 'Are you sure?',
     'booking_edit' => 'The Booking has been updated!',
+    'booking_delete' => 'The Booking has been deleted!',
 ];

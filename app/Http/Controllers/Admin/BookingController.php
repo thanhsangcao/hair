@@ -68,7 +68,7 @@ class BookingController extends Controller
         $booking = $this->bookingRepository->find($id);
         $services = $this->bookingRepository->getSelectedServices($id);
         $selectStylist = $this->bookingRepository->getStylistBySalon($id);
-        $selectedStylist = $booking->stylist->id;
+        $selectedStylist = $booking->stylist_id;
 
         return view('admin.booking.edit', compact('booking', 'services', 'selectStylist', 'selectedStylist'));
     }
@@ -84,7 +84,7 @@ class BookingController extends Controller
         $booking = $this->bookingRepository->find($id);
         $booking->update($request->all());
 
-        return redirect('/admin/bookings/' . $id . '/edit')->with('status', trans('admin.booking_edit'));
+        return redirect()->route('bookings.edit', $id)->with('status', trans('admin.booking_edit'));
     }
      /**
      * Remove the specified resource from storage.
@@ -96,15 +96,18 @@ class BookingController extends Controller
     {
         $booking = $this->bookingRepository->destroy($id);
 
-        return redirect('/admin/bookings/')->with('status', trans(''));
+        return redirect('/admin/bookings/')->with('status', trans('admin.booking_delete'));
     }
     public function changeStatus($id,$status_id)
     {
         try {
-            $booking = $this->bookingRepository->changeStatus($id,$status_id);
-
-            return redirect('/admin/bookings/' . $id . '/edit')->with('status', trans('booking.update_status'));
-            
+            $booking = $this->bookingRepository->find($id);
+            $status = $this->bookingRepository->changeStatus($booking,$status_id);
+            if ($booking->status == trans('booking.complete')) {
+                return redirect()->route('bills.create', $booking->id);
+            } else {
+                return redirect()->route('bookings.edit', $id)->with('status', trans('booking.update_status'));
+            } 
         } catch (ModelNotFoundException $e) {
             return trans('booking.false');
         }
@@ -116,11 +119,10 @@ class BookingController extends Controller
 
         return $service_id;
     }
-    public function deleteService(Request $request, $id){
+    public function deleteService($id, $service_id){
         $booking = $this->bookingRepository->find($id);
-        $service_id = $request->service_id;
         $booking->services()->detach($service_id);
 
-        return back();
+        return back()->with('status', trans('admin.Service_delete'));
     }
 }

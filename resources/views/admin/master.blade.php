@@ -46,8 +46,8 @@
                     <li><a href="{{ asset('admin/salons') }}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg>{{ __('Salon') }}</a></li>
                     <li><a href="{{ asset('admin/services') }}"><svg class="glyph stroked star"><use xlink:href="#stroked-star"/></svg>{{ __('Service') }}</a></li>
                     <li><a href="{{ asset('admin/renderbookings') }}"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"/></svg>{{ __('RenderBooking') }}</a></li>
-                    <li><a href="{{ asset('admin/manage_stylists') }}"><svg class="glyph stroked clock"><use xlink:href="#stroked-clock"/></svg>{{ __('Stylists') }}</a></li>
-                    <li><a href="{{ asset('admin/bookings') }}"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>{{ __('Bookings') }}</a>
+                    <li><a href="{{ asset('admin/manage_stylists') }}"><svg class="glyph stroked clock"><use xlink:href="#stroked-clock"/></svg>{{ __('Stylist') }}</a></li>
+                    <li><a href="{{ asset('admin/bookings') }}"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>{{ __('Booking') }}</a>
                     </li>
                 @endrole
             @endif
