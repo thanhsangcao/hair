@@ -16,7 +16,7 @@
                             <svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>
                         </div>
                         <div class="col-sm-9 col-lg-7 widget-right">
-                            <div class="large">120</div>
+                            <div class="large">{{ $service }}</div>
                             <div class="text-muted">{{ __('admin.Service') }}</div>
                         </div>
                     </div>
@@ -26,11 +26,11 @@
                 <div class="panel panel-orange panel-widget">
                     <div class="row no-padding">
                         <div class="col-sm-3 col-lg-5 widget-left">
-                            <svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg>
+                            <svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg>
                         </div>
                         <div class="col-sm-9 col-lg-7 widget-right">
-                            <div class="large">52</div>
-                            <div class="text-muted">{{ __('admin.Comment') }}</div>
+                            <div class="large">{{ $salon }}</div>
+                            <div class="text-muted">{{ __('Salons') }}</div>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                             <svg class="glyph stroked app-window-with-content"><use xlink:href="#stroked-app-window-with-content"></use></svg>
                         </div>
                         <div class="col-sm-9 col-lg-7 widget-right">
-                            <div class="large">25.2k</div>
+                            <div class="large">{{ $booking }}</div>
                             <div class="text-muted">{{ __('admin.Booking') }}</div>
                         </div>
                     </div>
@@ -63,15 +63,18 @@
             </div>
         </div><!--/.row-->
         
+        
         <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-red">
-                    <div class="panel-heading dark-overlay"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg>{{ __('admin.Calendar') }}</div>
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ __('Total daily revenue')}}</div>
                     <div class="panel-body">
-                        <div id="calendar"></div>
+                        <div class="canvas-wrapper">
+                            <canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
+                        </div>
                     </div>
                 </div>
-            </div><!--/.col-->
+            </div>
         </div><!--/.row-->
     </div>  <!--/.main-->
 @stop         

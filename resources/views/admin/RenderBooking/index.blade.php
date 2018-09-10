@@ -19,7 +19,7 @@
                         @endif
                         <div class="bootstrap-table">
                             <div class="table-responsive">
-                                <a href="{{ asset('admin/renderbookings/create') }}" class="btn btn-primary">{{ __('Add RenderBooking') }}</a>
+                                <a href="{{ asset('admin/renderbookings/create') }}" class="btn btn-primary btn-add">{{ __('Add RenderBooking') }}</a>
                                 <table class="table table-bordered" id="salon">
                                     <thead>
                                         <tr class="bg-primary">

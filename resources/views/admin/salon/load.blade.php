@@ -1,5 +1,5 @@
 <div class="table-responsive load">
-    <a href="{{ asset('admin/salons/create') }}" class="btn btn-primary">{{ __('Add Salon') }}</a>
+    <a href="{{ asset('admin/salons/create') }}" class="btn btn-primary btn-add">{{ __('Add Salon') }}</a>
     <table class="table table-bordered" id="salon">             
         <thead>
             <tr class="bg-primary">

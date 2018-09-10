@@ -967,3 +967,14 @@ h1.page-header {
 	border-radius: 
 	43px;
 }
+.btn-status{
+	width: 95px;
+}
+
+.btn-option{
+	width: 65px;
+}
+
+.options_user{
+	width: 14%;
+}

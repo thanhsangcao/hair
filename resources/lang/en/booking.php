@@ -16,4 +16,5 @@ return [
     'cancel' => '4',
     'true' => '1',
     'false' => '2',
+    'price_booking' => '100000',
 ];

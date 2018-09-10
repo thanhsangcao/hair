@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
     Route::get('bills/create/{booking_id}', 'BillController@create')->name('bills.create');
     Route::post('bills/create/{booking_id}', 'BillController@store');
     Route::get('bills/{booking_id}/show', 'BillController@show')->name('bills.show');
+    Route::get('bills/chart', 'BillController@chart');
 
 });
 

@@ -64,12 +64,10 @@
 
     {{ Html::script('bower_components/bower-hair/admin/js/jquery-1.11.1.min.js') }}
     {{ Html::script('js/pagination.js') }}
+    {{ Html::script('js/chart-data.js') }}
     {{ Html::script('bower_components/bower-hair/admin/js/bootstrap-table.js') }}
-    {{ Html::script('bower_components/bower-hair/admin/js/chart-data.js') }}
     {{ Html::script('bower_components/bower-hair/admin/js/chart.min.js') }}
     {{ Html::script('bower_components/bower-hair/admin/js/bootstrap.min.js') }}
-    {{ Html::script('bower_components/bower-hair/admin/js/chart.min.js') }}
-    {{ Html::script('bower_components/bower-hair/admin/js/chart-data.js') }}
     {{ Html::script('bower_components/bower-hair/admin/js/easypiechart.js') }}
     {{ Html::script('bower_components/bower-hair/admin/js/easypiechart-data.js') }}
     {{ Html::script('bower_components/bower-hair/admin/js/bootstrap-datepicker.js') }}

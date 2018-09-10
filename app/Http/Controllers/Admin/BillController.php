@@ -89,4 +89,11 @@ class BillController extends Controller
     {
         //
     }
+
+    public function chart()
+    {
+        $result = Bill::groupBy('payment_date')->selectRaw('payment_date, sum(payment_amount) as revenue')->get();
+        
+        return response()->json($result);
+    } 
 }

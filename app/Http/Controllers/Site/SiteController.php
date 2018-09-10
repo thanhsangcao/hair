@@ -31,7 +31,7 @@ class SiteController extends Controller
     {
         $input = $request->all();
         $input['status'] = trans('booking.new');
-        $input['grand_total'] = 100000;
+        $input['grand_total'] = trans('booking.price_booking');
         $booking = $this->siteRepository->store($input);
 
         return redirect('/')->with('status', trans(''));
