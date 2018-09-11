@@ -12,12 +12,16 @@
         "laravelcollective/html": "^5.6.28",
         "spatie/laravel-permission": "^2.13",
         "fzaninotto/faker": "^1.4",
+        "doctrine/dbal": "v2.4.2"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "^7.0"
+    },
+    "dependencies": {
+     "bower": "1.8.0" 
     },
     "autoload": {
         "classmap": [
@@ -49,7 +53,8 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
-        ]
+        ],
+        "postinstall": "./node_modules/bower/bin/bower install"
     },
     "config": {
         "preferred-install": "dist",
