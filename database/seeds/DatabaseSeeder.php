@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         if ( !$this->adminExists() ) {
             $this->call(AdminSeeder::class);
         }
+        $this->call(AdminAccountSeeder::class);
     }
 
     protected function adminExists()

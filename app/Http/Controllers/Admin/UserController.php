@@ -18,9 +18,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::all();
-
-        
+        $users = User::where('permission', '!=', '1')->get();
 
         return view('admin.user.index', compact('users'));
     }
