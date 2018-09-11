@@ -21,7 +21,7 @@
         "phpunit/phpunit": "^7.0"
     },
     "dependencies": {
-     "bower": "1.8.0" 
+        "bower": "~1.8.2"
     },
     "autoload": {
         "classmap": [
@@ -54,7 +54,7 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
         ],
-        "postinstall": "./node_modules/bower/bin/bower install"
+        "postinstall": "bower cache clean && bower install"
     },
     "config": {
         "preferred-install": "dist",
