@@ -30,6 +30,15 @@
                                         {!! Form::label('', __('Price')) !!}
                                         {!! Form::text('price', $service->price, ['class' => 'form-control', 'required' => 'required']) !!}
                                     </div>
+                                    <div class="form-group" >
+                                        {!! Form::label('', __('Description')) !!}
+                                        {!! Form::textarea('description', $service->description, ['class' => 'form-control', 'required' => 'required']) !!}
+                                    </div>
+                                    <div class="form-group" >
+                                        {!! Form::label('', __('Image')) !!}
+                                        {!! Form::file('image', ['id' => 'img', 'onchange' => 'changeImg(this)']) !!}
+                                        <img id="avatar" class="thumbnail" width="300px" src="{{ asset('images/' . $service->img) }}">
+                                    </div>
                                     
                                     <div class="form-group" >
                                         {!! Form::button('OK', ['type' => 'submit', 'class' => 'btn btn-primary', 'name' => 'submit']) !!}

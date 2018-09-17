@@ -37,7 +37,12 @@
                                                     <p><b><h4>{{ $bill->booking->name }}</h4></b></p>
                                                     <p><b>Mobile: </b>{{ $bill->booking->phone_number }}</p>
                                                     <p><b>Stylist: </b> {{ $bill->booking->stylist->name }}</p>
-                                                    <p><b>Payment Type: </b>{{ $bill->payment_type }}</p>
+                                                    <p><b>Payment Type: </b> @if($bill->payment_type == 1)
+                                                        {{ __('In Cash') }}
+                                                    @else
+                                                        {{ __('ATM/MasterCard') }}
+                                                    @endif
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div class="col-xs-4 col-sm-4 col-md-4">
@@ -66,7 +71,7 @@
                                                 <tr>
                                                    
                                                     <td class="text-right"><h2><strong>Total: </strong></h2></td>
-                                                    <td class="text-left text-danger"><h2><strong><i class="fa fa-inr"></i> {{ number_format($bill->booking->services->sum('price')) }}</strong></h2></td>
+                                                    <td class="text-left text-danger"><h2><strong><i class="fa fa-inr"></i> {{ number_format($bill->payment_amount) }}</strong></h2></td>
                                                 </tr>
                                             </tbody>
                                         </table>

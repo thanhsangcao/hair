@@ -19,8 +19,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 pr-5">
-                <h2 class="mb-3">Services</h2>
-                <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                <h2 class="mb-3">{{ __('Services') }}</h2>
+                <p class="mb-5">{{ __('Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.') }} </p>
                 <div class="mb-3 custom-nav">
                     <a href="#" class="btn btn-primary btn-sm custom-prev mr-2 mb-2"><span class="ion-android-arrow-back"></span></a> 
                     <a href="#" class="btn btn-primary btn-sm custom-next mr-2 mb-2"><span class="ion-android-arrow-forward"></span></a>
@@ -30,99 +30,17 @@
                 <div class="row">
                     <div class="col-md-12 slider-wrap">
                         <div class="owl-carousel owl-theme no-nav js-carousel-1">
-                            <a href="#" class="img-bg" style="background-image: url('images/img_2.jpg')">
-                                <div class="text">
-                                    <span class="icon custom-icon flaticon-scissors"></span>
-                                    <h2>Haircuting</h2>
-                                    <p>Read More</p>
-                                </div>
-                            </a>
-
-                            <a href="#" class="img-bg" style="background-image: url('images/img_1.jpg')">
-                                <div class="text">
-                                    <span class="icon custom-icon flaticon-scissors"></span>
-                                    <h2>Beard Shaving</h2>
-                                    <p>Read More</p>
-                                </div>
-                            </a>
-
-                            <a href="#" class="img-bg last" style="background-image: url('images/img_3.jpg')">
-                                <div class="text">
-                                    <span class="icon custom-icon flaticon-scissors"></span>
-                                    <h2>Cream &amp; Shampoo</h2>
-                                    <p>Read More</p>
-                                </div>
-                            </a>
-
-                            <a href="#" class="img-bg" style="background-image: url('images/img_2.jpg')">
-                                <div class="text">
-                                    <span class="icon custom-icon flaticon-scissors"></span>
-                                    <h2>Haircuting</h2>
-                                    <p>Read More</p>
-                                </div>
-                            </a>
-
-                            <a href="#" class="img-bg" style="background-image: url('images/img_1.jpg')">
-                                <div class="text">
-                                    <span class="icon custom-icon flaticon-scissors"></span>
-                                    <h2>Beard Shaving</h2>
-                                    <p>Read More</p>
-                                </div>
-                            </a>
-
-                            <a href="#" class="img-bg last" style="background-image: url('images/img_3.jpg')">
-                                <div class="text">
-                                    <span class="icon custom-icon flaticon-scissors"></span>
-                                    <h2>Cream &amp; Shampoo</h2>
-                                    <p>Read More</p>
-                                </div>
-                            </a>
-                            <a href="#" class="img-bg" style="background-image: url('images/img_2.jpg')">
-                                <div class="text">
-                                    <span class="icon custom-icon flaticon-scissors"></span>
-                                    <h2>Haircuting</h2>
-                                    <p>Read More</p>
-                                </div>
-                            </a>
-
-                            <a href="#" class="img-bg" style="background-image: url('images/img_1.jpg')">
-                                <div class="text">
-                                    <span class="icon custom-icon flaticon-scissors"></span>
-                                    <h2>Beard Shaving</h2>
-                                    <p>Read More</p>
-                                </div>
-                            </a>
-
-                            <a href="#" class="img-bg last" style="background-image: url('images/img_3.jpg')">
-                                <div class="text">
-                                    <span class="icon custom-icon flaticon-scissors"></span>
-                                    <h2>Cream &amp; Shampoo</h2>
-                                    <p>Read More</p>
-                                </div>
-                            </a>
-                            <a href="#" class="img-bg" style="background-image: url('images/img_2.jpg')">
-                                <div class="text">
-                                    <span class="icon custom-icon flaticon-scissors"></span>
-                                    <h2>Haircuting</h2>
-                                    <p>Read More</p>
-                                </div>
-                            </a>
-
-                            <a href="#" class="img-bg" style="background-image: url('images/img_1.jpg')">
-                                <div class="text">
-                                    <span class="icon custom-icon flaticon-scissors"></span>
-                                    <h2>Beard Shaving</h2>
-                                    <p>Read More</p>
-                                </div>
-                            </a>
-
-                            <a href="#" class="img-bg last" style="background-image: url('images/img_3.jpg')">
-                                <div class="text">
-                                    <span class="icon custom-icon flaticon-scissors"></span>
-                                    <h2>Cream &amp; Shampoo</h2>
-                                    <p>Read More</p>
-                                </div>
-                            </a>
+                            @foreach($services as $service)
+                                @if($service->show == 1)
+                                    <a href="#" class="img-bg" style="background-image: url('images/{{ $service->img }}')">
+                                        <div class="text">
+                                            <span class="icon custom-icon flaticon-scissors"></span>
+                                            <h2>{{ $service->name }}</h2>
+                                            <p>{{ __('Read More') }}</p>
+                                        </div>
+                                    </a>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>

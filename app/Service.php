@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     protected $guarded = ['id'];
-    protected $fillable = ['name', 'price'];
+    protected $fillable = ['name', 'price', 'description', 'img', 'show', 'delete'];
 
     public function bookings()
     {

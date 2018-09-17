@@ -44,8 +44,8 @@
                                                     <p><b>Mobile :</b>{{ $booking->phone_number }}</p>
                                                     <p><b>Stylist :</b> {{ $booking->stylist->name }}</p>
                                                     <p><b>Payment Type :</b> <select class="form-control" name="payment_type">
-                                                        <option >In cash</option>
-                                                        <option >Visa/Master Card</option>
+                                                        <option value="1">In cash</option>
+                                                        <option value="2">Visa/Master Card</option>
                                                     </select></p>
                                                 </div>
                                             </div>

@@ -26,6 +26,13 @@ class ServiceFormRequest extends FormRequest
         return [
             'name' => 'required',
             'price' => 'required',
+            'image' => 'mimes:jpeg,jpg,png,bmp,tiff',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'image.mimes' => 'Only jpeg, jpg, png, bmp, tiff are allowed',
         ];
     }
 }

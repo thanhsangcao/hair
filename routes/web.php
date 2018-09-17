@@ -40,6 +40,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
     Route::get('services/{id}/edit', 'ServiceController@edit');
     Route::post('services/{id}/edit', 'ServiceController@update');
     Route::delete('services/{id}', 'ServiceController@destroy');
+    Route::post('services/select', 'ServiceController@select');
 
     Route::get('renderbookings', 'RenderBookingController@index')->name('renderbookings.index');
     Route::get('renderbookings/create', 'RenderBookingController@create');

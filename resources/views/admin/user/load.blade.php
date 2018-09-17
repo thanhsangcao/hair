@@ -1,6 +1,8 @@
 <div class="table-responsive load">
-    <a href="{{ asset('admin/users/create') }}" class="btn btn-primary btn-add">{{ __('Add User') }}</a>
-    <table class="table-bordered table-striped" id="salon" data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">             
+    <div id="toolbar">
+        <a href="{{ asset('admin/users/create') }}" class="btn btn-primary btn-add">{{ __('Add User') }}</a>
+    </div>
+    <table class="table-bordered table-striped" data-toolbar="#toolbar" id="salon" data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">             
         <thead>
             <tr class="bg-primary">
                 <th data-field="id" data-sortable="true">{{ __('ID') }}</th>

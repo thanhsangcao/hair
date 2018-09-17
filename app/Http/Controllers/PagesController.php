@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Salon;
+use App\Service;
 use App\User;
 use App\Repositories\Contracts\SiteRepositoryInterface;
 
@@ -18,10 +18,8 @@ class PagesController extends Controller
     
     public function home()
     {
-    	$selectSalon = $this->siteRepository->create();
-        $stylist_id = [];
-        $timeSheet = [];
+    	$services = Service::all();
 
-    	return view('home', compact('selectSalon', 'stylist_id', 'timeSheet'));
+    	return view('home', compact('services'));
     }
 }

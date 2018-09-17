@@ -15,6 +15,10 @@
                     <div class="panel-heading">{{ __('Create a new Service') }}</div>
                     <div class="panel-body">
                         {!! Form::open(['method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+                            @foreach ($errors->all() as $error)
+                                <p class="alert alert-danger">{{ $error }}</p>
+                            @endforeach
+
                             @if (session('status'))
                                 <div class="alert alert-success">
                                     {{ session('status') }}
@@ -29,6 +33,15 @@
                                     <div class="form-group" >
                                         {!! Form::label('', __('Price')) !!}
                                         {!! Form::text('price', '', ['class' => 'form-control', 'required' => 'required']) !!}
+                                    </div>
+                                    <div class="form-group" >
+                                        {!! Form::label('', __('Description')) !!}
+                                        {!! Form::textarea('description', '', ['class' => 'form-control', 'required' => 'required']) !!}
+                                    </div>
+                                    <div class="form-group" >
+                                        {!! Form::label('', __('Image')) !!}
+                                        {!! Form::file('image', ['id' => 'img', 'onchange' => 'changeImg(this)']) !!}
+                                        <img id="avatar" class="thumbnail" width="300px" src="{{ asset('images/new_seo-10-512.png') }}">
                                     </div>
                                     
                                     <div class="form-group" >

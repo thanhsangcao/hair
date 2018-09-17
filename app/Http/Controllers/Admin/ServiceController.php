@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Service;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ServiceFormRequest;
 
 
 class ServiceController extends Controller
@@ -18,11 +19,7 @@ class ServiceController extends Controller
      */
     public function index(Request $request)
     {
-        $services = DB::table('services')->paginate(config('model.pagination'));
-
-        if ($request->ajax()) {
-            return view('admin.service.load', ['services' => $services])->render();  
-        }
+        $services = Service::all();
 
         return view('admin.service.index', compact('services'));
 
@@ -44,12 +41,20 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceFormRequest $request)
     {
-        $service = new Service;
-        $service = $service->create($request->all());
-        $service->save();
+        $input = $request->all();
+        $input['show'] = trans('admin.Default_value');
+        $input['delete'] = trans('admin.Default_value');
 
+        if($request->hasFile('image'))
+        {
+            $fileName = $request->file('image')->getClientOriginalName();
+            $image = $request->file('image')->storeAs('public/images', $fileName);
+            $input['img'] = $fileName;
+        }
+        $service = Service::create($input);
+        
         return redirect('/admin/services')->with('status', trans('admin.Service_create'));
 
     }
@@ -96,7 +101,12 @@ class ServiceController extends Controller
         try {
             $service = Service::findOrFail($id);
             $service->update($request->all());
-            $service->save();
+            if($request->hasFile('image'))
+            {
+                $fileName = $request->file('image')->getClientOriginalName();
+                $image = $request->file('image')->storeAs('public/images', $fileName);
+                $service->update(['img' => $fileName]);
+            }
 
             return redirect(action('Admin\ServiceController@edit', $service->id))->with('status', trans('admin.Service_edit'));
                 
@@ -118,5 +128,16 @@ class ServiceController extends Controller
 
         return redirect('/admin/services/')->with('status', trans('admin.Service_delete'));
 
+    }
+
+    public function select(Request $request)
+    {
+        $ids = $request->checkbox;
+        foreach ($ids as $id) {
+            $service = Service::findOrFail($id)->update(['show' => '1']);
+        }
+            $unSelected = Service::whereNotIn('id', $ids)->update(['show' => '0']);
+
+        return back()->with('status', trans('Selected success!'));;
     }
 }

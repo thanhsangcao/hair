@@ -1,11 +1,13 @@
 <div class="table-responsive load">
-    <a href="{{ asset('admin/salons/create') }}" class="btn btn-primary btn-add">{{ __('Add Salon') }}</a>
-    <table class="table table-bordered" id="salon">             
+    <div id="toolbar">
+        <a href="{{ asset('admin/salons/create') }}" class="btn btn-primary btn-add">{{ __('Add Salon') }}</a>
+    </div>
+    <table class="table-bordered table-striped" data-toggle="table" data-toolbar="#toolbar" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc" id="salon">             
         <thead>
             <tr class="bg-primary">
                 <th>{{ __('ID') }}</th>
-                <th class="width_salon">{{ __('Name') }}</th>
-                <th class="width_salon">{{ __('Address') }}</th>
+                <th class="width_salon" data-field="state" data-sortable="true">{{ __('Name') }}</th>
+                <th class="width_salon" data-field="state" data-sortable="true">{{ __('Address') }}</th>
                 <th id="options">{{ __('Options') }}</th>
             </tr>
         </thead>
@@ -25,8 +27,6 @@
             </tr>
         @endforeach
         </tbody>
-    </table>
-
-    {{ $salons->links() }}   
+    </table> 
 
 </div>
