@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
+    <title>Register</title>
 
     {{ Html::style('bower_components/bower-hair/admin/css/bootstrap.min.css') }}
     {{ Html::style('bower_components/bower-hair/admin/css/datepicker3.css') }}
@@ -19,8 +19,8 @@
     
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
-                <div class="panel-heading">{{ __('Login') }}</div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Register</div>
                 <div class="panel-body">
                     <!-- <form role="form" method="post"> -->
                     @foreach ($errors->all() as $error)
@@ -30,19 +30,19 @@
                     {!! Form::open(['method' => 'post']) !!}
                         <fieldset>
                             <div class="form-group">
-                                {!! Form::email('email', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Email' ]) !!}
+                                {!! Form::text('name', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Name' ]) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::email('email', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Email Address' ]) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::password('password', ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Password' ]) !!}
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    {!! Form::checkbox('remember') !!}
-                                    {{ __('Remember Me') }}
-                                </label>
+                            <div class="form-group">
+                                {!! Form::password('password_confirmation', ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Confirm Password' ]) !!}
                             </div>
-                            {!! Form::button('Login', ['type' => 'submit', 'class' => 'btn btn-primary', 'name' => 'submit']) !!}
-                            <a href="{{ route('register')}}" class="btn btn-danger">Sign up</a>
+                            {!! Form::button('OK', ['type' => 'submit', 'class' => 'btn btn-primary', 'name' => 'submit']) !!}
+                            <a href="{{ route('login')}}" class="btn btn-default">Back</a>
                         </fieldset>
                         {!! Form::token() !!}
                     {!! Form::close() !!}

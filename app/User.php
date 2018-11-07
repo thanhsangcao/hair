@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone_number', 'address', 'permission', 'salon_id',
+        'name', 'email', 'password', 'phone_number', 'address', 'permission', 'salon_id','email_token',
     ];
 
     /**
@@ -47,6 +47,6 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($password)
     {   
-        $this->attributes['password'] = bcrypt($password);
+        $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
     }
 }

@@ -7,13 +7,13 @@ use App\Booking;
 use App\Service;
 use App\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Repositories\Eloquents\BookingRepository;
+use App\Repositories\Contracts\BookingRepositoryInterface;
 
 class BookingController extends Controller
 {
     protected $bookingRepository;
 
-    public function __construct(BookingRepository $bookingRepository)
+    public function __construct(BookingRepositoryInterface $bookingRepository)
     {
         $this->bookingRepository = $bookingRepository;
     }

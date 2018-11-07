@@ -24,7 +24,7 @@
                 <td>{{ $user->address }}</td>
                 <td>{{ $user->phone_number }}</td>
                 <td>{{ $user->permission }}</td>
-                <td>{{ $user->salon->name }}</td>
+                <td>@if (isset($user->salon_id)) {{ $user->salon->name }} @endif</td>
                 <td>
                     <a href="{{ asset('admin/users/' . $user->id . '/edit') }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Edit') }}</a>
                     {{ Form::open(array('url' => 'admin/users/' .  $user->id, 'class' => 'pull-right')) }}

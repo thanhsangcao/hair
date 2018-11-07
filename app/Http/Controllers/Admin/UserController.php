@@ -21,6 +21,7 @@ class UserController extends Controller
         $users = User::where('permission', '!=', '1')->get();
 
         return view('admin.user.index', compact('users'));
+        // return response()->json($users);
     }
 
     /**
@@ -42,7 +43,14 @@ class UserController extends Controller
             $selectRole[ $role->id ] = $role->name;
         }
 
+        // $data = array(
+        //     'selectSalon' => $selectSalon,
+        //     'selectRole' => $selectRole
+        // );
+        
         return view('admin.user.create', compact('selectSalon', 'selectRole'));
+
+        // return response()->json($selectSalon, $selectRole);
     }
 
     /**
@@ -53,10 +61,18 @@ class UserController extends Controller
      */
     public function store(UserFormRequest $request)
     {
-        $user = User::create($request->all());
+        $user = User::create([
+            'name' => 'Cao Thanh Sang',
+            'email' => 'a@gmail.com',
+            'password' => '123456',
+            'permission' => '3',
+            'verified' => '0'
+        ]);
         $user->syncRoles($request->get('permission'));
 
         return redirect('/admin/users')->with('status', trans('admin.User_create'));
+
+        // return response()->json($user, 201);
     }
 
     /**
@@ -94,7 +110,16 @@ class UserController extends Controller
             }
             $selectedRole = $user->roles()->pluck('id')->toArray();
 
+            // $data = array(
+            //     'user' => $user,
+            //     'selectSalon' => $selectSalon,
+            //     'selectedSalon' => $selectedSalon,
+            //     'selectRole' => $selectRole,
+            //     'selectedRole' => $selectedRole
+            // );
+
             return view('admin.user.edit', compact('user', 'selectSalon', 'selectedSalon', 'selectRole', 'selectedRole'));
+            // return response()->json($data);
 
         } catch (ModelNotFoundException $e) {
             abort(404);
@@ -118,6 +143,7 @@ class UserController extends Controller
             $user->syncRoles($request->get('permission'));
 
             return redirect(route('users.edit', $user->id))->with('status', trans('admin.User_edit'));
+            // return response()->json($user);
                 
         } catch (ModelNotFoundException $e) {
             abort(404);
@@ -135,5 +161,6 @@ class UserController extends Controller
         $user = User::destroy($id);
 
         return redirect('/admin/users/')->with('status', trans('admin.User_delete'));
+        // return response()->json(null, 204);
     }
 }
