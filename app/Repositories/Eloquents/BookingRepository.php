@@ -6,6 +6,7 @@ use App\Booking;
 use App\Service;
 use App\User;
 use App\Repositories\Contracts\BookingRepositoryInterface;
+use DB;
 
 class BookingRepository implements BookingRepositoryInterface
 {
@@ -20,11 +21,16 @@ class BookingRepository implements BookingRepositoryInterface
     public function destroy($id){
     	return Booking::destroy($id);
     }
-    public function getSelectedServices($id)
+    public function getServicesNotSelected($id)
     {
     	return  Service::whereDoesntHave('bookings', function($q) use ($id){ 
     				$q->where('booking_id', $id);
+                    dd($q);
         		})->get();
+        // $booking = Booking::findOrFail($id);
+        // $service_ids = $booking->services()->wherePivot('booking_id','=', $id)->pluck('service_id');
+        
+        // return Service::WhereNotIn('id', $service_ids)->get();
     }
     public function getStylistBySalon($id)
     {

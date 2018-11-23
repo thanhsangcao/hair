@@ -57,7 +57,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($booking->services as $service)
+                                                    @foreach($booking->services()->withTrashed()->get() as $service)
                                                     <tr>
                                                         <td>{{ $service->name }}</td>
                                                         <td>{{ number_format($service->price) }}</td>

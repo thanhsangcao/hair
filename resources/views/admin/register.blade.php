@@ -36,6 +36,9 @@
                                 {!! Form::email('email', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Email Address' ]) !!}
                             </div>
                             <div class="form-group">
+                                {!! Form::text('mobile', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Mobile' ]) !!}
+                            </div>
+                            <div class="form-group">
                                 {!! Form::password('password', ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Password' ]) !!}
                             </div>
                             <div class="form-group">

@@ -6,7 +6,7 @@ interface BookingRepositoryInterface
     public function all();
     public function find($id);
     public function destroy($id);
-    public function getSelectedServices($id);
+    public function getServicesNotSelected($id);
     public function getStylistBySalon($id);
     public function changeStatus($booking, $status_id);
 }

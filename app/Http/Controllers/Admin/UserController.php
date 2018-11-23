@@ -61,13 +61,7 @@ class UserController extends Controller
      */
     public function store(UserFormRequest $request)
     {
-        $user = User::create([
-            'name' => 'Cao Thanh Sang',
-            'email' => 'a@gmail.com',
-            'password' => '123456',
-            'permission' => '3',
-            'verified' => '0'
-        ]);
+        $user = User::create($request->all());
         $user->syncRoles($request->get('permission'));
 
         return redirect('/admin/users')->with('status', trans('admin.User_create'));

@@ -66,7 +66,7 @@ class BookingController extends Controller
     {
        
         $booking = $this->bookingRepository->find($id);
-        $services = $this->bookingRepository->getSelectedServices($id);
+        $services = $this->bookingRepository->getServicesNotSelected($id);
         $selectStylist = $this->bookingRepository->getStylistBySalon($id);
         $selectedStylist = $booking->stylist_id;
 
